@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://d2k50qg6g3t21"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xrivr"]
+specular_color = Color(0.31431612, 0.31431612, 0.3143161, 1)
+
+[node name="background" type="Node" unique_id=1953703789]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1545958296]
+offset_left = -71.0
+offset_top = -38.0
+offset_right = 1239.0
+offset_bottom = 721.0
+texture = SubResource("CanvasTexture_xrivr")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=697674104]
+position = Vector2(574, 327)

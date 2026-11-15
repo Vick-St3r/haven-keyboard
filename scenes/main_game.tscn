@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://busa3fghdrpvl"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xrivr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_72e8q"]
+
+[node name="main game" type="Node" unique_id=224379156]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=105246504]
+offset_left = -121.0
+offset_top = -50.0
+offset_right = 1377.0
+offset_bottom = 687.0
+texture = SubResource("CanvasTexture_xrivr")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1019799262]
+position = Vector2(574, 320)
+
+[node name="TextEdit" type="TextEdit" parent="." unique_id=179861261]
+offset_left = 80.0
+offset_top = 234.0
+offset_right = 1061.0
+offset_bottom = 590.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_72e8q")
+text = "aaaaaaaaaaaaaaaaaaaaa"

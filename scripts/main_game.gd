@@ -54,6 +54,7 @@ func _on_text_edit_text_changed() -> void:
 			curSentence += 1;
 			targetText = scrambledSentences[curSentence] + "."
 			textedit.clear()
+			badSentenceDone = false
 		targetTextDisplay.text = targetText
 	updateTextDisplay()
 
@@ -67,10 +68,12 @@ func updateTextDisplay():
 			else:
 				targetTextDisplay.push_color(Color.RED)
 			targetTextDisplay.add_text(targetText[i])
+			targetTextDisplay.pop_all()
 			
 		# fill in the remaining text
 		targetTextDisplay.push_color(Color.BLACK)
 		targetTextDisplay.add_text(targetText.substr(textedit.text.length()))
+		targetTextDisplay.pop_all()
 	else:
 		# check if it matches word by word
 		var targetWords = targetText.split(" ")
@@ -81,5 +84,6 @@ func updateTextDisplay():
 			else:
 				targetTextDisplay.push_color(Color.RED)
 			targetTextDisplay.add_text(typedWords[i] + " ")
+			targetTextDisplay.pop_all()
 
 		

@@ -67,7 +67,4 @@ autoplay = "hand"
 frame = 2
 frame_progress = 0.84375477
 
-[node name="Camera2D" parent="." unique_id=306515462 instance=ExtResource("5_ipu61")]
-position = Vector2(576, 321)
-
 [connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]

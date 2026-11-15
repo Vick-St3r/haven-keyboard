@@ -16,13 +16,16 @@ var scrambledSentences;
 var curSentence = 0;
 var badSentenceDone = false;
 var sec: float = 0.0
+var timeLeft: float = 0.0;
+var timeLimit = 0;
+var originalText;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# load contents of a random txt file
 	randomize()
-	targetText = FileAccess.get_file_as_string(textFiles.pick_random())
-	originalSentences = targetText.split(".")
+	originalText = FileAccess.get_file_as_string(textFiles.pick_random())
+	originalSentences = originalText.split(".")
 	scrambledSentences = originalSentences.duplicate()
 	for i in scrambledSentences.size():
 		scrambledSentences[i] = scrambleText(scrambledSentences[i])
@@ -30,6 +33,7 @@ func _ready() -> void:
 	targetTextDisplay.push_color(Color.BLACK)
 	targetTextDisplay.add_text(targetText)
 
+	startTimer()
 	
 	textedit.position.x = targetTextDisplay.position.x-5;
 	textedit.position.y = targetTextDisplay.position.y-5;
@@ -50,10 +54,15 @@ func swapAtIndex(arr, index):
 	arr[index] = temp
 	return arr;
 
+func startTimer():
+	timeLimit = originalText.split(" ").size();
+	timeLeft = timeLimit;
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	sec +=delta
-	timertext.text = str(int(sec))
+	timeLeft -= delta
+	timertext.text = str(int(timeLeft))
 
 func _on_text_edit_text_changed() -> void:
 	if textedit.text == targetText:

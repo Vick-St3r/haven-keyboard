@@ -1,10 +1,22 @@
 extends Node
 
 @onready var textedit = $TextEdit
+var targetText;
+@onready var targetTextDisplay = $texttype
+const textFilesPath = "res://texts/"
+@onready var textFiles = [
+	textFilesPath + "mitosis.txt",
+	textFilesPath + "mitochondria.txt",
+	textFilesPath + "organism.txt",
+	textFilesPath + "photosynthesis.txt",
+]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	# load contents of txt file
+	randomize()
+	targetText = FileAccess.get_file_as_string(textFiles.pick_random())
+	targetTextDisplay.text = targetText
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

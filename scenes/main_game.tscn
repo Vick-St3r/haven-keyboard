@@ -20,12 +20,13 @@ texture = SubResource("CanvasTexture_xrivr")
 position = Vector2(574, 320)
 
 [node name="TextEdit" type="TextEdit" parent="." unique_id=179861261]
-offset_left = 334.0
-offset_top = 168.0
-offset_right = 1315.0
-offset_bottom = 524.0
+offset_left = 100.0
+offset_top = 43.0
+offset_right = 660.0
+offset_bottom = 399.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_72e8q")
+wrap_mode = 1
 
 [node name="texttype" type="Label" parent="." unique_id=45095107]
 offset_left = 341.0

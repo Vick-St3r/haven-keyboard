@@ -37,6 +37,7 @@ offset_top = 202.0
 offset_right = 838.0
 offset_bottom = 233.0
 theme_override_fonts/normal_font = ExtResource("2_72e8q")
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 
 [node name="Camera2D" parent="." unique_id=306515462 instance=ExtResource("5_ipu61")]

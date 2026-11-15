@@ -35,8 +35,8 @@ func _ready() -> void:
 
 	startTimer()
 	
-	textedit.position.x = targetTextDisplay.position.x-5;
-	textedit.position.y = targetTextDisplay.position.y-5;
+	textedit.position.x = targetTextDisplay.position.x;
+	textedit.position.y = targetTextDisplay.position.y-2;
 	textedit.size.x = targetTextDisplay.size.x;
 	textedit.size.y = targetTextDisplay.size.y;
 
@@ -55,7 +55,7 @@ func swapAtIndex(arr, index):
 	return arr;
 
 func startTimer():
-	timeLimit = originalText.split(" ").size();
+	timeLimit = originalText.split(" ").size() * 1.5;
 	timeLeft = timeLimit;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

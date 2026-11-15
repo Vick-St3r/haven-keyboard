@@ -46,6 +46,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_text_edit_text_changed() -> void:
+	
 	if textedit.text == targetText:
 		if !badSentenceDone:
 			targetText = originalSentences[curSentence] + "."

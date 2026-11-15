@@ -5,22 +5,6 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_xrivr"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8efq7"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_da6cc"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.029506551, 0.029506566, 0.029506514, 1)
-
 [node name="main game" type="Node" unique_id=224379156]
 script = ExtResource("1_s3esy")
 
@@ -49,5 +33,7 @@ offset_left = 341.0
 offset_top = 202.0
 offset_right = 838.0
 offset_bottom = 233.0
+theme_override_fonts/normal_font = ExtResource("2_72e8q")
+bbcode_enabled = true
 
 [connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]

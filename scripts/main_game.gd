@@ -32,7 +32,6 @@ func scrambleText(text):
 	for i in words.size() - 1:
 		if randi_range(0, 9) == 0:
 			words = swapAtIndex(words, i)
-	print(words)
 	return " ".join(words)
 	
 

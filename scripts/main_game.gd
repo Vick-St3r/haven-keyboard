@@ -1,5 +1,7 @@
 extends Node
 
+signal reportcard(grade: String, wpm: float, sec: float)
+
 @onready var textedit = $TextEdit
 var targetText;
 @onready var targetTextDisplay = $texttype
@@ -85,6 +87,7 @@ func _process(delta: float) -> void:
 		grade.text = "D"
 	else:
 		grade.text = "F"
+	reportcard.emit(grade.text, wpm, sec)
 
 func _on_text_edit_text_changed() -> void:
 	total_characters_typed = textedit.text.length() + characters_already_typed

@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://71xhl7ul8is4" path="res://assets/hand/handframe1.png" id="5_wi4c7"]
 [ext_resource type="Texture2D" uid="uid://drubkmm0fqx7o" path="res://assets/hand/handframe2.png" id="6_70vka"]
 [ext_resource type="Texture2D" uid="uid://cveluhx3ch4iu" path="res://assets/hand/handframe3.png" id="7_2l77h"]
+[ext_resource type="Texture2D" uid="uid://baqgtxa0ase7l" path="res://assets/maingame/wpmmm.png" id="8_5cypo"]
 [ext_resource type="Texture2D" uid="uid://b8qgyay5rndat" path="res://assets/maingame/stopwatch.png" id="9_2l77h"]
 [ext_resource type="Texture2D" uid="uid://b7kgnjo035t42" path="res://assets/maingame/gradeui.png" id="10_nqdth"]
 
@@ -61,6 +62,10 @@ offset_right = 1152.0
 offset_bottom = 648.0
 texture = ExtResource("10_nqdth")
 
+[node name="stickynote" type="Sprite2D" parent="." unique_id=1689418433]
+position = Vector2(183, 209)
+texture = ExtResource("8_5cypo")
+
 [node name="clock" type="Sprite2D" parent="." unique_id=1052357420]
 position = Vector2(93, 529)
 texture = ExtResource("9_2l77h")
@@ -80,7 +85,7 @@ offset_left = 292.0
 offset_top = 221.0
 offset_right = 789.0
 offset_bottom = 528.0
-theme_override_constants/line_separation = 4
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("2_72e8q")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true

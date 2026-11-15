@@ -41,11 +41,17 @@ offset_right = 660.0
 offset_bottom = 399.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 <<<<<<< HEAD
+<<<<<<< HEAD
 theme_override_fonts/font = ExtResource("2_72e8q")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxEmpty_72e8q")
 =======
 >>>>>>> 9c8c2bffb03845ebb952ff29f1269f5679bb6ee0
+=======
+theme_override_fonts/font = ExtResource("2_72e8q")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_72e8q")
+>>>>>>> 8fc0d64b1751be9888b6bc64ff12200bce0ecc64
 wrap_mode = 1
 
 [node name="texttype" type="RichTextLabel" parent="." unique_id=2095181091]

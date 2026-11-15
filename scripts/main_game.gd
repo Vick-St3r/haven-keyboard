@@ -77,8 +77,14 @@ func _process(delta: float) -> void:
 	wpmnote.text = "WPM: \n" + str(wpm)
 	if wpm >= 80:
 		grade.text = "A"
-	else: 
-		print("poop")
+	elif wpm >= 70: 
+		grade.text = "B"
+	elif wpm >= 60: 
+		grade.text = "C"
+	elif wpm >= 50: 
+		grade.text = "D"
+	else:
+		grade.text = "F"
 
 func _on_text_edit_text_changed() -> void:
 	total_characters_typed = textedit.text.length() + characters_already_typed

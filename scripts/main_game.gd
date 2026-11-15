@@ -25,7 +25,9 @@ func _ready() -> void:
 	for i in scrambledSentences.size():
 		scrambledSentences[i] = scrambleText(scrambledSentences[i])
 	targetText = scrambledSentences[curSentence] + "."
-	targetTextDisplay.text = targetText
+	targetTextDisplay.push_color(Color.BLACK)
+	targetTextDisplay.add_text(targetText)
+
 	
 	textedit.position.x = targetTextDisplay.position.x-5;
 	textedit.position.y = targetTextDisplay.position.y-5;
@@ -83,8 +85,8 @@ func updateTextDisplay():
 		# check if it matches word by word
 		var targetWords = targetText.split(" ")
 		var typedWords = textedit.text.split(" ")
-		for i in min(typedWords.size(), targetWords.size()):
-			if typedWords[i] == targetWords[i]:
+		for i in typedWords.size():
+			if i < targetWords.size() && typedWords[i] == targetWords[i]:
 				targetTextDisplay.push_color(Color.GREEN)
 			else:
 				targetTextDisplay.push_color(Color.RED)

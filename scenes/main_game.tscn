@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://busa3fghdrpvl"]
 
 [ext_resource type="Script" uid="uid://duvtpi0ndv331" path="res://scripts/main_game.gd" id="1_s3esy"]
-[ext_resource type="Texture2D" uid="uid://nmfrsoy2h77v" path="res://assets/maingame/floor bg.png" id="2_0rdsr"]
+[ext_resource type="Texture2D" uid="uid://qi5t6c21c2sr" path="res://assets/maingame/betterfloor.png" id="2_5cypo"]
 [ext_resource type="FontFile" uid="uid://lsxuyc7dq7r5" path="res://assets/font/Pangolin-Regular.ttf" id="2_72e8q"]
 [ext_resource type="Texture2D" uid="uid://kpj48414w7s0" path="res://assets/maingame/topofdesk.png" id="3_ipu61"]
 [ext_resource type="Script" uid="uid://wk6n20yv77cp" path="res://scenes/text_edit.gd" id="5_70vka"]
@@ -38,11 +38,11 @@ color = Color(0, 0, 0, 0)
 script = ExtResource("1_s3esy")
 
 [node name="bg" type="TextureRect" parent="." unique_id=105246504]
-offset_left = -150.0
-offset_top = -38.0
-offset_right = 1348.0
-offset_bottom = 699.0
-texture = ExtResource("2_0rdsr")
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 1154.0
+offset_bottom = 651.0
+texture = ExtResource("2_5cypo")
 
 [node name="deskpaper" type="TextureRect" parent="." unique_id=837888128]
 offset_right = 1152.0
@@ -62,23 +62,45 @@ offset_right = 1152.0
 offset_bottom = 648.0
 texture = ExtResource("10_nqdth")
 
+[node name="actualgrade" type="Label" parent="grade" unique_id=2145065636]
+layout_mode = 0
+offset_left = 345.0
+offset_top = 21.0
+offset_right = 392.0
+offset_bottom = 112.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_72e8q")
+theme_override_font_sizes/font_size = 72
+text = "C"
+
 [node name="stickynote" type="Sprite2D" parent="." unique_id=1689418433]
 position = Vector2(183, 209)
 texture = ExtResource("8_5cypo")
+
+[node name="wpm" type="Label" parent="stickynote" unique_id=286057988]
+offset_left = -75.0
+offset_top = -67.0
+offset_right = 48.0
+offset_bottom = 8.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_72e8q")
+theme_override_font_sizes/font_size = 28
+text = "WPM: 
+"
 
 [node name="clock" type="Sprite2D" parent="." unique_id=1052357420]
 position = Vector2(93, 529)
 texture = ExtResource("9_2l77h")
 
 [node name="time" type="Label" parent="clock" unique_id=1191286392]
-offset_left = -23.0
-offset_top = 13.0
-offset_right = 30.0
-offset_bottom = 67.0
+offset_left = -38.0
+offset_top = 12.0
+offset_right = 36.0
+offset_bottom = 66.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_72e8q")
 theme_override_font_sizes/font_size = 42
-text = "10"
+text = "100"
 
 [node name="texttype" type="RichTextLabel" parent="." unique_id=2095181091]
 offset_left = 292.0

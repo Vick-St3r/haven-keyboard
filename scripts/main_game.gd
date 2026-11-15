@@ -25,6 +25,9 @@ var previous_length: int = 0
 var wpm: int = 0
 var minutes: float = 0.0
 
+@onready var wpmnote = $stickynote/wpm
+@onready var grade = $grade/actualgrade
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# load contents of a random txt file
@@ -70,7 +73,11 @@ func _process(delta: float) -> void:
 	timertext.text = str(int(timeLeft))
 	minutes = sec/60
 	wpm = (total_characters_typed/5)/(minutes +0.000001)
-	print(wpm)
+	wpmnote.text = "WPM: \n" + str(wpm)
+	if wpm >= 80:
+		grade.text = "A"
+	else: 
+		print("poop")
 
 func _on_text_edit_text_changed() -> void:
 	total_characters_typed = textedit.text.length()

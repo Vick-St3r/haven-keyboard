@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://vj3uujx8ng54"]
 
+[ext_resource type="Texture2D" uid="uid://nmfrsoy2h77v" path="res://assets/maingame/floor bg.png" id="1_8juob"]
+
 [node name="Score" type="Node" unique_id=1158445384]
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1557537278]
+[node name="bg" type="TextureRect" parent="." unique_id=1557537278]
 offset_right = 40.0
 offset_bottom = 40.0
+texture = ExtResource("1_8juob")

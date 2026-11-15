@@ -23,7 +23,7 @@ var originalText;
 var total_characters_typed: int = 0
 var previous_length: int = 0
 var wpm: int = 0
-var minutes: int = 0
+var minutes: float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -69,14 +69,11 @@ func _process(delta: float) -> void:
 	timeLeft -= delta
 	timertext.text = str(int(timeLeft))
 	minutes = sec/60
-	wpm = (total_characters_typed/5)/(minutes +0.000000000000000001)
+	wpm = (total_characters_typed/5)/(minutes +0.000001)
 	print(wpm)
 
 func _on_text_edit_text_changed() -> void:
-	var current_length = targetTextDisplay.text.length()
-	if current_length > previous_length:
-		total_characters_typed += (current_length - previous_length)
-		previous_length = current_length
+	total_characters_typed = textedit.text.length()
 	if textedit.text == targetText:
 		if !badSentenceDone:
 			targetText = originalSentences[curSentence].strip_edges() + "."

@@ -26,6 +26,11 @@ func _ready() -> void:
 		scrambledSentences[i] = scrambleText(scrambledSentences[i])
 	targetText = scrambledSentences[curSentence] + "."
 	targetTextDisplay.text = targetText
+	
+	textedit.position.x = targetTextDisplay.position.x-5;
+	textedit.position.y = targetTextDisplay.position.y-5;
+	textedit.size.x = targetTextDisplay.size.x;
+	textedit.size.y = targetTextDisplay.size.y;
 
 func scrambleText(text):
 	var words = text.split(" ")
@@ -48,11 +53,11 @@ func _process(delta: float) -> void:
 func _on_text_edit_text_changed() -> void:
 	if textedit.text == targetText:
 		if !badSentenceDone:
-			targetText = originalSentences[curSentence] + "."
+			targetText = originalSentences[curSentence].strip_edges() + "."
 			badSentenceDone = true
 		else:
 			curSentence += 1;
-			targetText = scrambledSentences[curSentence] + "."
+			targetText = scrambledSentences[curSentence].strip_edges() + "."
 			textedit.clear()
 			badSentenceDone = false
 		targetTextDisplay.text = targetText

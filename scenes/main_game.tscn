@@ -4,10 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://nmfrsoy2h77v" path="res://assets/maingame/floor bg.png" id="2_0rdsr"]
 [ext_resource type="FontFile" uid="uid://lsxuyc7dq7r5" path="res://assets/font/Pangolin-Regular.ttf" id="2_72e8q"]
 [ext_resource type="Texture2D" uid="uid://kpj48414w7s0" path="res://assets/maingame/topofdesk.png" id="3_ipu61"]
-[ext_resource type="PackedScene" uid="uid://dyhusmoefy2au" path="res://scenes/camerashake.tscn" id="5_ipu61"]
+[ext_resource type="Script" uid="uid://wk6n20yv77cp" path="res://scenes/text_edit.gd" id="5_70vka"]
 [ext_resource type="Texture2D" uid="uid://71xhl7ul8is4" path="res://assets/hand/handframe1.png" id="5_wi4c7"]
 [ext_resource type="Texture2D" uid="uid://drubkmm0fqx7o" path="res://assets/hand/handframe2.png" id="6_70vka"]
 [ext_resource type="Texture2D" uid="uid://cveluhx3ch4iu" path="res://assets/hand/handframe3.png" id="7_2l77h"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hraha"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xrivr"]
 animations = [{
@@ -41,24 +43,26 @@ offset_right = 1152.0
 offset_bottom = 648.0
 texture = ExtResource("3_ipu61")
 
+[node name="texttype" type="RichTextLabel" parent="." unique_id=2095181091]
+offset_left = 216.0
+offset_top = 149.0
+offset_right = 713.0
+offset_bottom = 346.0
+theme_override_fonts/normal_font = ExtResource("2_72e8q")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+
 [node name="TextEdit" type="TextEdit" parent="." unique_id=179861261]
 offset_left = 100.0
 offset_top = 43.0
 offset_right = 660.0
 offset_bottom = 399.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_72e8q")
 theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxLine_hraha")
 wrap_mode = 1
-
-[node name="texttype" type="RichTextLabel" parent="." unique_id=2095181091]
-offset_left = 341.0
-offset_top = 202.0
-offset_right = 838.0
-offset_bottom = 399.0
-theme_override_fonts/normal_font = ExtResource("2_72e8q")
-theme_override_font_sizes/normal_font_size = 24
-bbcode_enabled = true
+script = ExtResource("5_70vka")
 
 [node name="hand" type="AnimatedSprite2D" parent="." unique_id=806426322]
 position = Vector2(979, 458)

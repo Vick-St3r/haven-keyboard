@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://71xhl7ul8is4" path="res://assets/hand/handframe1.png" id="5_wi4c7"]
 [ext_resource type="Texture2D" uid="uid://drubkmm0fqx7o" path="res://assets/hand/handframe2.png" id="6_70vka"]
 [ext_resource type="Texture2D" uid="uid://cveluhx3ch4iu" path="res://assets/hand/handframe3.png" id="7_2l77h"]
+[ext_resource type="Texture2D" uid="uid://b8qgyay5rndat" path="res://assets/maingame/stopwatch.png" id="9_2l77h"]
+[ext_resource type="Texture2D" uid="uid://b7kgnjo035t42" path="res://assets/maingame/gradeui.png" id="10_nqdth"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xrivr"]
 animations = [{
@@ -67,5 +69,26 @@ animation = &"hand"
 autoplay = "hand"
 frame = 2
 frame_progress = 0.84375477
+
+[node name="Camera2D" parent="." unique_id=306515462 instance=ExtResource("5_ipu61")]
+position = Vector2(577, 323)
+
+[node name="clock" type="Sprite2D" parent="." unique_id=1052357420]
+position = Vector2(93, 529)
+texture = ExtResource("9_2l77h")
+
+[node name="time" type="Label" parent="clock" unique_id=1191286392]
+offset_left = -33.0
+offset_top = 5.0
+offset_right = 34.0
+offset_bottom = 63.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 42
+text = "n/a"
+
+[node name="grade" type="TextureRect" parent="." unique_id=618326113]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("10_nqdth")
 
 [connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]

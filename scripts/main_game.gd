@@ -46,7 +46,22 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_text_edit_text_changed() -> void:
-	
+	# update text label
+	targetTextDisplay.clear()
+	# check if typed text matches
+	for i in textedit.text.length():
+		if textedit.text[i] == targetText[i]:
+			targetTextDisplay.push_color(Color.GREEN)
+		else:
+			targetTextDisplay.push_color(Color.RED)
+		targetTextDisplay.add_text(targetText[i])
+		
+	# fill in the remaining text
+	targetTextDisplay.push_color(Color.BLACK)
+	targetTextDisplay.add_text(targetText.substr(textedit.text.length()))
+
+
+
 	if textedit.text == targetText:
 		if !badSentenceDone:
 			targetText = originalSentences[curSentence] + "."

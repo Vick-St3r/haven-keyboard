@@ -75,6 +75,7 @@ func _process(delta: float) -> void:
 	minutes = sec/60
 	wpm = (total_characters_typed/5)/(minutes +0.000001)
 	wpmnote.text = "WPM: \n" + str(wpm)
+	
 	if wpm >= 80:
 		grade.text = "A"
 	elif wpm >= 70: 
@@ -85,6 +86,10 @@ func _process(delta: float) -> void:
 		grade.text = "D"
 	else:
 		grade.text = "F"
+	
+	if timeLeft <= 0:
+		grade.text = "F";
+		get_tree().change_scene_to_file("res://scenes/score.tscn")
 
 func _on_text_edit_text_changed() -> void:
 	total_characters_typed = textedit.text.length() + characters_already_typed

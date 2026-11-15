@@ -1,5 +1,7 @@
 extends Node
 
+signal reportcard(grade: String, wpm: float, sec: float)
+
 @onready var textedit = $TextEdit
 var targetText;
 @onready var targetTextDisplay = $texttype
@@ -86,10 +88,14 @@ func _process(delta: float) -> void:
 		grade.text = "D"
 	else:
 		grade.text = "F"
+<<<<<<< HEAD
 	
 	if timeLeft <= 0:
 		grade.text = "F";
 		get_tree().change_scene_to_file("res://scenes/score.tscn")
+=======
+	reportcard.emit(grade.text, wpm, sec)
+>>>>>>> 7f4ddaa8483f23fea217753594690393183f6d4c
 
 func _on_text_edit_text_changed() -> void:
 	total_characters_typed = textedit.text.length() + characters_already_typed

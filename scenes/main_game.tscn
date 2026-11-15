@@ -11,8 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://b8qgyay5rndat" path="res://assets/maingame/stopwatch.png" id="9_2l77h"]
 [ext_resource type="Texture2D" uid="uid://b7kgnjo035t42" path="res://assets/maingame/gradeui.png" id="10_nqdth"]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_hraha"]
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_xrivr"]
 animations = [{
 "frames": [{
@@ -29,6 +27,8 @@ animations = [{
 "name": &"hand",
 "speed": 4.0
 }]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hraha"]
 
 [node name="main game" type="Node" unique_id=224379156]
 script = ExtResource("1_s3esy")
@@ -54,18 +54,6 @@ theme_override_fonts/normal_font = ExtResource("2_72e8q")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 
-[node name="TextEdit" type="TextEdit" parent="." unique_id=179861261]
-offset_left = 100.0
-offset_top = 43.0
-offset_right = 660.0
-offset_bottom = 399.0
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_fonts/font = ExtResource("2_72e8q")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxLine_hraha")
-wrap_mode = 1
-script = ExtResource("5_70vka")
-
 [node name="hand" type="AnimatedSprite2D" parent="." unique_id=806426322]
 position = Vector2(979, 458)
 sprite_frames = SubResource("SpriteFrames_xrivr")
@@ -73,9 +61,6 @@ animation = &"hand"
 autoplay = "hand"
 frame = 2
 frame_progress = 0.84375477
-
-[node name="Camera2D" parent="." unique_id=306515462 instance=ExtResource("5_ipu61")]
-position = Vector2(577, 323)
 
 [node name="clock" type="Sprite2D" parent="." unique_id=1052357420]
 position = Vector2(93, 529)
@@ -94,5 +79,17 @@ text = "n/a"
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("10_nqdth")
+
+[node name="TextEdit" type="TextEdit" parent="." unique_id=179861261]
+offset_left = 100.0
+offset_top = 43.0
+offset_right = 660.0
+offset_bottom = 399.0
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("2_72e8q")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxLine_hraha")
+wrap_mode = 1
+script = ExtResource("5_70vka")
 
 [connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]

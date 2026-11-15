@@ -4,7 +4,21 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_xrivr"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_72e8q"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8efq7"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_da6cc"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.029506551, 0.029506566, 0.029506514, 1)
 
 [node name="main game" type="Node" unique_id=224379156]
 script = ExtResource("1_s3esy")

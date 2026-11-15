@@ -5,10 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://xk7ovj65gjyi" path="res://assets/menu/menutitle.png" id="3_8efq7"]
 [ext_resource type="Texture2D" uid="uid://cbqcghea7k26p" path="res://assets/menu/cursortitlething.png" id="4_da6cc"]
 [ext_resource type="Texture2D" uid="uid://bu8cihgu2t1cf" path="res://assets/menu/menutextything.png" id="5_b6e46"]
-[ext_resource type="Texture2D" uid="uid://qiw8k0t52l7e" path="res://assets/menu/startwhite.png" id="6_td6w2"]
-[ext_resource type="Texture2D" uid="uid://6kosf5il6noo" path="res://assets/menu/startdarkest.png" id="7_r2thq"]
-[ext_resource type="Texture2D" uid="uid://bf5kxc473p7x5" path="res://assets/menu/startdark.png" id="8_0470j"]
-[ext_resource type="BitMap" uid="uid://bxbi16j7vb3kt" path="res://assets/menu/startdarkest - Copy.png" id="9_6vm3t"]
+[ext_resource type="PackedScene" uid="uid://csh70pvxvbjwu" path="res://scenes/button.tscn" id="6_wax1t"]
 
 [node name="background" type="Node" unique_id=1953703789]
 script = ExtResource("1_l5f8m")
@@ -38,12 +35,4 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("5_b6e46")
 
-[node name="startbutton" type="TextureButton" parent="." unique_id=1473862561]
-offset_right = 1152.0
-offset_bottom = 648.0
-texture_normal = ExtResource("6_td6w2")
-texture_pressed = ExtResource("7_r2thq")
-texture_hover = ExtResource("8_0470j")
-texture_click_mask = ExtResource("9_6vm3t")
-
-[connection signal="pressed" from="startbutton" to="." method="_on_texture_button_pressed"]
+[node name="button" parent="." unique_id=1389436227 instance=ExtResource("6_wax1t")]

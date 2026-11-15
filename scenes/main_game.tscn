@@ -1,19 +1,24 @@
 [gd_scene format=3 uid="uid://busa3fghdrpvl"]
 
 [ext_resource type="Script" uid="uid://duvtpi0ndv331" path="res://scripts/main_game.gd" id="1_s3esy"]
+[ext_resource type="Texture2D" uid="uid://nmfrsoy2h77v" path="res://assets/maingame/floor bg.png" id="2_0rdsr"]
 [ext_resource type="FontFile" uid="uid://lsxuyc7dq7r5" path="res://assets/font/Pangolin-Regular.ttf" id="2_72e8q"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_xrivr"]
+[ext_resource type="Texture2D" uid="uid://kpj48414w7s0" path="res://assets/maingame/topofdesk.png" id="3_ipu61"]
 
 [node name="main game" type="Node" unique_id=224379156]
 script = ExtResource("1_s3esy")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=105246504]
+[node name="bg" type="TextureRect" parent="." unique_id=105246504]
 offset_left = -121.0
 offset_top = -50.0
 offset_right = 1377.0
 offset_bottom = 687.0
-texture = SubResource("CanvasTexture_xrivr")
+texture = ExtResource("2_0rdsr")
+
+[node name="deskpaper" type="TextureRect" parent="." unique_id=837888128]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("3_ipu61")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1019799262]
 position = Vector2(574, 320)

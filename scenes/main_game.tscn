@@ -29,15 +29,18 @@ animations = [{
 }]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_hraha"]
+color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nqdth"]
 
 [node name="main game" type="Node" unique_id=224379156]
 script = ExtResource("1_s3esy")
 
 [node name="bg" type="TextureRect" parent="." unique_id=105246504]
-offset_left = 598.0
-offset_top = -577.0
-offset_right = 2096.0
-offset_bottom = 160.0
+offset_left = -150.0
+offset_top = -38.0
+offset_right = 1348.0
+offset_bottom = 699.0
 texture = ExtResource("2_0rdsr")
 
 [node name="deskpaper" type="TextureRect" parent="." unique_id=837888128]
@@ -53,42 +56,44 @@ autoplay = "hand"
 frame = 2
 frame_progress = 0.84375477
 
+[node name="grade" type="TextureRect" parent="." unique_id=618326113]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("10_nqdth")
+
 [node name="clock" type="Sprite2D" parent="." unique_id=1052357420]
 position = Vector2(93, 529)
 texture = ExtResource("9_2l77h")
 
 [node name="time" type="Label" parent="clock" unique_id=1191286392]
-offset_left = -33.0
-offset_top = 5.0
-offset_right = 34.0
-offset_bottom = 63.0
+offset_left = -31.0
+offset_top = 8.0
+offset_right = 36.0
+offset_bottom = 66.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_72e8q")
 theme_override_font_sizes/font_size = 42
 text = "n/a"
 
-[node name="grade" type="TextureRect" parent="." unique_id=618326113]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("10_nqdth")
-
 [node name="texttype" type="RichTextLabel" parent="." unique_id=2095181091]
-offset_left = 216.0
-offset_top = 149.0
-offset_right = 713.0
-offset_bottom = 346.0
+offset_left = 292.0
+offset_top = 221.0
+offset_right = 789.0
+offset_bottom = 528.0
 theme_override_fonts/normal_font = ExtResource("2_72e8q")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 
 [node name="TextEdit" type="TextEdit" parent="." unique_id=179861261]
-offset_left = 100.0
-offset_top = 43.0
-offset_right = 660.0
-offset_bottom = 399.0
+offset_left = 176.0
+offset_top = 115.0
+offset_right = 736.0
+offset_bottom = 585.0
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_72e8q")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxLine_hraha")
+theme_override_styles/focus = SubResource("StyleBoxTexture_nqdth")
 wrap_mode = 1
 script = ExtResource("5_70vka")
 

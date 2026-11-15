@@ -13,7 +13,7 @@ const textFilesPath = "res://texts/"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# load contents of txt file
+	# load contents of a random txt file
 	randomize()
 	targetText = FileAccess.get_file_as_string(textFiles.pick_random())
 	targetTextDisplay.text = targetText

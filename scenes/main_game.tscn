@@ -30,8 +30,9 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_72e8q")
 [node name="texttype" type="Label" parent="." unique_id=45095107]
 offset_left = 341.0
 offset_top = 202.0
-offset_right = 408.0
+offset_right = 838.0
 offset_bottom = 225.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+autowrap_mode = 3
 
 [connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]

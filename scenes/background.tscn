@@ -1,16 +1,49 @@
 [gd_scene format=3 uid="uid://d2k50qg6g3t21"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_xrivr"]
-specular_color = Color(0.31431612, 0.31431612, 0.3143161, 1)
+[ext_resource type="Script" uid="uid://b0y58t47rmfb8" path="res://scripts/background.gd" id="1_l5f8m"]
+[ext_resource type="Texture2D" uid="uid://rxhao814tnf6" path="res://assets/menu/menubg.png" id="2_6vm3t"]
+[ext_resource type="Texture2D" uid="uid://xk7ovj65gjyi" path="res://assets/menu/menutitle.png" id="3_8efq7"]
+[ext_resource type="Texture2D" uid="uid://cbqcghea7k26p" path="res://assets/menu/cursortitlething.png" id="4_da6cc"]
+[ext_resource type="Texture2D" uid="uid://bu8cihgu2t1cf" path="res://assets/menu/menutextything.png" id="5_b6e46"]
+[ext_resource type="Texture2D" uid="uid://qiw8k0t52l7e" path="res://assets/menu/startwhite.png" id="6_td6w2"]
+[ext_resource type="Texture2D" uid="uid://6kosf5il6noo" path="res://assets/menu/startdarkest.png" id="7_r2thq"]
+[ext_resource type="Texture2D" uid="uid://bf5kxc473p7x5" path="res://assets/menu/startdark.png" id="8_0470j"]
+[ext_resource type="BitMap" uid="uid://bxbi16j7vb3kt" path="res://assets/menu/startdarkest - Copy.png" id="9_6vm3t"]
 
 [node name="background" type="Node" unique_id=1953703789]
+script = ExtResource("1_l5f8m")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1545958296]
-offset_left = -71.0
-offset_top = -38.0
-offset_right = 1239.0
-offset_bottom = 721.0
-texture = SubResource("CanvasTexture_xrivr")
+[node name="bg" type="TextureRect" parent="." unique_id=1545958296]
+offset_left = -5.0
+offset_top = 2.0
+offset_right = 1147.0
+offset_bottom = 650.0
+texture = ExtResource("2_6vm3t")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=697674104]
 position = Vector2(574, 327)
+
+[node name="maintext" type="TextureRect" parent="." unique_id=2031391888]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_8efq7")
+
+[node name="mouse" type="TextureRect" parent="." unique_id=103118122]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_da6cc")
+
+[node name="subtext" type="TextureRect" parent="." unique_id=1461206409]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_b6e46")
+
+[node name="startbutton" type="TextureButton" parent="." unique_id=1473862561]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture_normal = ExtResource("6_td6w2")
+texture_pressed = ExtResource("7_r2thq")
+texture_hover = ExtResource("8_0470j")
+texture_click_mask = ExtResource("9_6vm3t")
+
+[connection signal="pressed" from="startbutton" to="." method="_on_texture_button_pressed"]

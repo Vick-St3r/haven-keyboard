@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://vj3uujx8ng54"]
+
+[node name="Score" type="Node" unique_id=1158445384]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1557537278]
+offset_right = 40.0
+offset_bottom = 40.0

@@ -3,6 +3,7 @@ extends Node
 @onready var textedit = $TextEdit
 var targetText;
 @onready var targetTextDisplay = $texttype
+@onready var timertext = $clock/time
 const textFilesPath = "res://texts/"
 @onready var textFiles = [
 	textFilesPath + "mitosis.txt",
@@ -14,6 +15,7 @@ var originalSentences;
 var scrambledSentences;
 var curSentence = 0;
 var badSentenceDone = false;
+var sec: float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -50,7 +52,8 @@ func swapAtIndex(arr, index):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	sec +=delta
+	timertext.text = str(int(sec))
 
 func _on_text_edit_text_changed() -> void:
 	if textedit.text == targetText:

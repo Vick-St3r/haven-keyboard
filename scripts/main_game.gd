@@ -23,6 +23,7 @@ var originalText;
 var total_characters_typed: int = 0
 var previous_length: int = 0
 var wpm: int = 0
+var characters_already_typed = 0;
 var minutes: float = 0.0
 
 # Called when the node enters the scene tree for the first time.
@@ -73,7 +74,7 @@ func _process(delta: float) -> void:
 	print(wpm)
 
 func _on_text_edit_text_changed() -> void:
-	total_characters_typed = textedit.text.length()
+	total_characters_typed = textedit.text.length() + characters_already_typed
 	if textedit.text == targetText:
 		if !badSentenceDone:
 			targetText = originalSentences[curSentence].strip_edges() + "."
@@ -81,6 +82,7 @@ func _on_text_edit_text_changed() -> void:
 		else:
 			curSentence += 1;
 			targetText = scrambledSentences[curSentence].strip_edges() + "."
+			characters_already_typed += textedit.text.length()
 			textedit.clear()
 			badSentenceDone = false
 		targetTextDisplay.text = targetText

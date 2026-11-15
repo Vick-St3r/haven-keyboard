@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://busa3fghdrpvl"]
 
+[ext_resource type="Script" uid="uid://duvtpi0ndv331" path="res://scripts/main_game.gd" id="1_s3esy"]
+
 [sub_resource type="CanvasTexture" id="CanvasTexture_xrivr"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_72e8q"]
 
 [node name="main game" type="Node" unique_id=224379156]
+script = ExtResource("1_s3esy")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=105246504]
 offset_left = -121.0
@@ -23,4 +26,5 @@ offset_right = 1061.0
 offset_bottom = 590.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_72e8q")
-text = "aaaaaaaaaaaaaaaaaaaaa"
+
+[connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]

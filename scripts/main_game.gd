@@ -1,5 +1,6 @@
 extends Node
 
+@onready var textedit = $TextEdit
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,4 +13,5 @@ func _process(delta: float) -> void:
 
 
 func _on_text_edit_text_changed() -> void:
-	pass # Replace with function body.
+	if textedit.text == "hi":
+		print("poop")

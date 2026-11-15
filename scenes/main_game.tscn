@@ -5,6 +5,26 @@
 [ext_resource type="FontFile" uid="uid://lsxuyc7dq7r5" path="res://assets/font/Pangolin-Regular.ttf" id="2_72e8q"]
 [ext_resource type="Texture2D" uid="uid://kpj48414w7s0" path="res://assets/maingame/topofdesk.png" id="3_ipu61"]
 [ext_resource type="PackedScene" uid="uid://dyhusmoefy2au" path="res://scenes/camerashake.tscn" id="5_ipu61"]
+[ext_resource type="Texture2D" uid="uid://71xhl7ul8is4" path="res://assets/hand/handframe1.png" id="5_wi4c7"]
+[ext_resource type="Texture2D" uid="uid://drubkmm0fqx7o" path="res://assets/hand/handframe2.png" id="6_70vka"]
+[ext_resource type="Texture2D" uid="uid://cveluhx3ch4iu" path="res://assets/hand/handframe3.png" id="7_2l77h"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xrivr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_wi4c7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_70vka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2l77h")
+}],
+"loop": 1,
+"name": &"hand",
+"speed": 4.0
+}]
 
 [node name="main game" type="Node" unique_id=224379156]
 script = ExtResource("1_s3esy")
@@ -40,7 +60,13 @@ theme_override_fonts/normal_font = ExtResource("2_72e8q")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 
-[node name="Camera2D" parent="." unique_id=306515462 instance=ExtResource("5_ipu61")]
-position = Vector2(579, 326)
+
+[node name="hand" type="AnimatedSprite2D" parent="." unique_id=806426322]
+position = Vector2(979, 458)
+sprite_frames = SubResource("SpriteFrames_xrivr")
+animation = &"hand"
+autoplay = "hand"
+frame = 2
+frame_progress = 0.84375477
 
 [connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]

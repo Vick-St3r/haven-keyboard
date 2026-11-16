@@ -1,9 +1,12 @@
 extends Node
 
 @onready var reportcardpop = $reportcard
-var grade
-var wpm
-var sec
+@onready var gradetext = $reportcard/grade
+@onready var wpmtext = $reportcard/wpm
+@onready var timetext = $reportcard/time
+var grade: String
+var wpm: float
+var sec: float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,17 +15,18 @@ func _ready() -> void:
 	tween.set_ease(Tween.EASE_OUT)
 	tween.tween_property(reportcardpop, "position", Vector2(0,0), 1.2)
 	
-	var main_game_node = get_node("../MainGame") 
-	if main_game_node:
-		main_game_node.reportcard.connect(_on_main_game_reportcard)
-
-func _on_main_game_reportcard(new_grade: String, new_wpm: float, new_sec: float) -> void: 
-	grade = new_grade
-	wpm = new_wpm
-	sec = new_sec
-	print("Received Grade: ", grade)
-	print("Received WPM: ", wpm)
-	print("Received Time: ", sec)
+	# Grab the data straight from your Singleton autoload
+	grade = Signalsender.final_grade
+	wpm = Signalsender.final_wpm
+	sec = Signalsender.final_sec
+	
+	print("Successfully Loaded Grade: ", grade)
+	print("Successfully Loaded WPM: ", wpm)
+	print("Successfully Loaded Time: ", sec)
+	
+	gradetext.text = str(grade)
+	wpmtext.text = str(int(wpm))
+	timetext.text = str(int(sec))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -47,7 +47,7 @@ theme_override_fonts/font = ExtResource("5_68bkv")
 theme_override_font_sizes/font_size = 72
 text = "poop"
 
-[node name="Label" type="Label" parent="reportcard" unique_id=1805937415]
+[node name="time" type="Label" parent="reportcard" unique_id=1805937415]
 layout_mode = 0
 offset_left = 363.0
 offset_top = 439.0

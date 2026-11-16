@@ -91,8 +91,10 @@ func _process(delta: float) -> void:
 
 	if timeLeft <= 0:
 		grade.text = "F";
+		Signalsender.final_grade = grade.text
+		Signalsender.final_wpm = wpm
+		Signalsender.final_sec = sec
 		get_tree().change_scene_to_file("res://scenes/score.tscn")
-		reportcard.emit(grade.text, wpm, sec)
 
 func _on_text_edit_text_changed() -> void:
 	total_characters_typed = textedit.text.length() + characters_already_typed

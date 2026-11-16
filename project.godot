@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="typing game"
-run/main_scene="uid://busa3fghdrpvl"
+run/main_scene="uid://d2k50qg6g3t21"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Signalsender="*uid://bgq3rns1c72e2"
 
 [display]
 

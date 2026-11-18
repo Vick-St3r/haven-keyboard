@@ -112,12 +112,14 @@ theme_override_fonts/normal_font = ExtResource("2_72e8q")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 
-[node name="TextEdit" type="TextEdit" parent="." unique_id=179861261]
+[node name="TextEdit" type="TextEdit" parent="." unique_id=179861261 node_paths=PackedStringArray("main_game")]
 offset_left = 176.0
 offset_top = 115.0
 offset_right = 736.0
 offset_bottom = 585.0
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_constants/caret_width = 2
 theme_override_constants/line_spacing = 4
 theme_override_fonts/font = ExtResource("2_72e8q")
 theme_override_font_sizes/font_size = 24
@@ -125,5 +127,6 @@ theme_override_styles/normal = SubResource("StyleBoxLine_hraha")
 theme_override_styles/focus = SubResource("StyleBoxTexture_nqdth")
 wrap_mode = 1
 script = ExtResource("5_70vka")
+main_game = NodePath("..")
 
 [connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]

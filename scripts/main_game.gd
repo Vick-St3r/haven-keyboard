@@ -46,7 +46,7 @@ func _ready() -> void:
 	startTimer()
 	
 	textedit.position.x = targetTextDisplay.position.x;
-	textedit.position.y = targetTextDisplay.position.y-2;
+	textedit.position.y = targetTextDisplay.position.y;
 	textedit.size.x = targetTextDisplay.size.x;
 	textedit.size.y = targetTextDisplay.size.y;
 

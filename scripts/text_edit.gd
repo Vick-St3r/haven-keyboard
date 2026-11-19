@@ -52,7 +52,10 @@ func process_input_A():
 		main_game.on_round_completion();
 
 func process_input_B():
-	if text == main_game.targetText:
+	# check if inputted text equals target text, ignoring any extra spaces
+	var user_text_words = text.split(" ", false)
+	var target_text_words = main_game.targetText.split(" ", false)
+	if user_text_words == target_text_words:
 		main_game.on_round_completion();
 
 class SpellingHighlighter extends SyntaxHighlighter:
@@ -60,8 +63,6 @@ class SpellingHighlighter extends SyntaxHighlighter:
 		var color_map = {}
 		var text_edit = get_text_edit()
 		var user_text = text_edit.actual_text
-		if text_edit.main_game.badSentenceDone:
-			user_text = text_edit.text
 		var target_text = text_edit.main_game.targetText
 		for i in user_text.length():
 			if i >= target_text.length():
@@ -73,5 +74,46 @@ class SpellingHighlighter extends SyntaxHighlighter:
 			
 		return color_map
 
+class WordsHighlighter extends SyntaxHighlighter:
+	func _get_line_syntax_highlighting(line: int) -> Dictionary:
+		var color_map = {}
+		var text_edit = get_text_edit()
+		var user_text = text_edit.text
+		var target_text = text_edit.main_game.targetText
+		
+		var user_text_words = user_text.split(" ", false)
+		var word_start_indices = text_edit.get_word_start_indices(user_text)
+		var target_text_words = target_text.split(" ", false)
+		
+		for i in user_text_words.size():
+			if i >= target_text_words.size():
+				color_map[word_start_indices[i]] = { "color": Color.RED }
+			elif user_text_words[i] == target_text_words[i]:
+				color_map[word_start_indices[i]] = { "color": Color.GREEN }
+				print(user_text_words[i])
+				print(target_text_words[i])
+			else:
+				color_map[word_start_indices[i]] = { "color": Color.RED }
+		
+		#for i in user_text.length():
+			#if i >= target_text.length():
+				#color_map[i] = { "color": Color.RED }
+			#elif user_text[i] == target_text[i]:
+				#color_map[i] = { "color": Color.GREEN }
+			#else:
+				#color_map[i] = { "color": Color.RED }
+			
+		return color_map
+
+func get_word_start_indices(text):
+	var indices = []
+	for i in text.length():
+		if text[i] != ' ' && (i == 0 || text[i-1] == ' '):
+			indices.append(i)
+	return indices
+
 func update_highlights():
-	syntax_highlighter = SpellingHighlighter.new()
+	if main_game.badSentenceDone:
+		syntax_highlighter = WordsHighlighter.new()
+	else:
+		syntax_highlighter = SpellingHighlighter.new()

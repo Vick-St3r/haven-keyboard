@@ -101,8 +101,8 @@ func _on_text_edit_text_changed() -> void:
 
 func on_round_completion():
 	if !badSentenceDone:
-		setTargetText(originalSentences[curSentence].strip_edges() + ".")
 		badSentenceDone = true
+		setTargetText(originalSentences[curSentence].strip_edges() + ".")
 		# hide original text while correcting words
 		targetTextDisplay.clear()
 		# handle case where there were no typos in original - immediately go to next sentence
@@ -117,6 +117,7 @@ func setTargetText(newText):
 
 func goToNextSentence():
 	curSentence += 1;
+	badSentenceDone = false
 	# end game once the player finishes the last sentence
 	if curSentence >= originalSentences.size():
 		Signalsender.final_grade = grade.text
@@ -126,7 +127,6 @@ func goToNextSentence():
 	setTargetText(scrambledSentences[curSentence].strip_edges() + ".")
 	characters_already_typed += textedit.text.length()
 	textedit.clear()
-	badSentenceDone = false
 	# update label to show new text
 	targetTextDisplay.text = targetText
 

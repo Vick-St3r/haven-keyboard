@@ -16,28 +16,52 @@ var prev_length = 0
 var actual_text = ""
 
 func _on_text_changed() -> void:
+	if !main_game.badSentenceDone:
+		process_input_A()
+		print(actual_text)
+	else:
+		process_input_B()
+
+func process_input_A():
 	var cur_length = text.length()
 	# checks if a character was added
-	if cur_length > prev_length:
-		actual_text += text[text.length()-1]
-		if text.length() < main_game.targetText.length():
-			set_text(main_game.targetText.substr(0, text.length()))
-			set_caret_column(get_line(0).length())
+	if cur_length >= prev_length:
+		
+		if text.length() <= main_game.targetText.length():
+			
+			# allow adding a character if the following conditions are met:
+			# expected character is not a space
+			# OR expected character is a space, player has typed everything before correctly, and player types a space
+			if main_game.targetText[text.length()-1] != ' ' || (actual_text == main_game.targetText.substr(0, text.length()-1) && text[text.length()-1] == ' '):
+				actual_text += text.substr(text.length() - (cur_length - prev_length))
+				set_text(main_game.targetText.substr(0, text.length()))	
+				set_caret_column(get_line(0).length())
+			else:
+				set_text(main_game.targetText.substr(0, text.length()-1))
+				set_caret_column(get_line(0).length())
 		else:
 			set_text(main_game.targetText)
 			set_caret_column(get_line(0).length())
 	else:
 		actual_text = actual_text.substr(0, actual_text.length() - (prev_length - cur_length))
-	prev_length = cur_length
-	print(actual_text)
+	prev_length = text.length()
 	
+	# update sentence if user types everything correctly
+	if actual_text == main_game.targetText:
+		#actual_text = "" # reset for the next round
+		main_game.on_round_completion();
 
+func process_input_B():
+	if text == main_game.targetText:
+		main_game.on_round_completion();
 
 class SpellingHighlighter extends SyntaxHighlighter:
 	func _get_line_syntax_highlighting(line: int) -> Dictionary:
 		var color_map = {}
 		var text_edit = get_text_edit()
 		var user_text = text_edit.actual_text
+		if text_edit.main_game.badSentenceDone:
+			user_text = text_edit.text
 		var target_text = text_edit.main_game.targetText
 		for i in user_text.length():
 			if i >= target_text.length():

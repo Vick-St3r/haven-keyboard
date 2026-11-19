@@ -97,18 +97,19 @@ func _process(delta: float) -> void:
 
 func _on_text_edit_text_changed() -> void:
 	total_characters_typed = textedit.text.length() + characters_already_typed
-	if textedit.text == targetText:
-		if !badSentenceDone:
-			setTargetText(originalSentences[curSentence].strip_edges() + ".")
-			badSentenceDone = true
-			# hide original text while correcting words
-			targetTextDisplay.clear()
-			# handle case where there were no typos in original - immediately go to next sentence
-			if textedit.text == targetText:
-				goToNextSentence()
-		else:
+		
+
+func on_round_completion():
+	if !badSentenceDone:
+		setTargetText(originalSentences[curSentence].strip_edges() + ".")
+		badSentenceDone = true
+		# hide original text while correcting words
+		targetTextDisplay.clear()
+		# handle case where there were no typos in original - immediately go to next sentence
+		if textedit.text == targetText:
 			goToNextSentence()
-	
+	else:
+		goToNextSentence()
 
 func setTargetText(newText):
 	targetText = newText

@@ -17,6 +17,7 @@ var actual_text = ""
 
 func _on_text_changed() -> void:
 	if !main_game.badSentenceDone:
+		selecting_enabled = false
 		process_input_A()
 		print(actual_text)
 	else:
@@ -43,7 +44,10 @@ func process_input_A():
 			set_text(main_game.targetText)
 			set_caret_column(get_line(0).length())
 	else:
+		set_text(main_game.targetText.substr(0, text.length()))
+		set_caret_column(get_line(0).length())
 		actual_text = actual_text.substr(0, actual_text.length() - (prev_length - cur_length))
+		
 	prev_length = text.length()
 	
 	# update sentence if user types everything correctly

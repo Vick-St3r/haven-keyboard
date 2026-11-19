@@ -51,7 +51,7 @@ func _ready() -> void:
 	textedit.size.y = targetTextDisplay.size.y;
 
 func scrambleText(text):
-	var words = text.split(" ")
+	var words = text.split(" ", false)
 	for i in words.size() - 1:
 		if randi_range(0, 1) == 0:
 			words = swapAtIndex(words, i)
@@ -65,7 +65,7 @@ func swapAtIndex(arr, index):
 	return arr;
 
 func startTimer():
-	timeLimit = originalText.split(" ").size() * 1.5;
+	timeLimit = originalText.split(" ", false).size() * 1.5;
 	timeLeft = timeLimit;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -101,13 +101,13 @@ func _on_text_edit_text_changed() -> void:
 		if !badSentenceDone:
 			setTargetText(originalSentences[curSentence].strip_edges() + ".")
 			badSentenceDone = true
+			# hide original text while correcting words
+			targetTextDisplay.clear()
 			# handle case where there were no typos in original - immediately go to next sentence
 			if textedit.text == targetText:
 				goToNextSentence()
 		else:
 			goToNextSentence()
-		targetTextDisplay.text = targetText
-	#updateTextDisplay()
 	
 
 func setTargetText(newText):
@@ -126,6 +126,8 @@ func goToNextSentence():
 	characters_already_typed += textedit.text.length()
 	textedit.clear()
 	badSentenceDone = false
+	# update label to show new text
+	targetTextDisplay.text = targetText
 
 
 

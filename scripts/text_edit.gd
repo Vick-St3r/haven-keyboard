@@ -5,6 +5,7 @@ extends TextEdit
 func _ready() -> void:
 	text_changed.connect(_on_text_changed)
 	syntax_highlighter = SpellingHighlighter.new()
+	selecting_enabled = false
 	grab_focus()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,7 +18,6 @@ var actual_text = ""
 
 func _on_text_changed() -> void:
 	if !main_game.badSentenceDone:
-		selecting_enabled = false
 		process_input_A()
 		print(actual_text)
 	else:
@@ -54,14 +54,23 @@ func process_input_A():
 	if actual_text == main_game.targetText:
 		actual_text = "" # reset for the next round
 		prev_length = 0
-		main_game.on_round_completion();
-
+		on_round_completion()
+		
 func process_input_B():
 	# check if inputted text equals target text, ignoring any extra spaces
 	var user_text_words = text.split(" ", false)
 	var target_text_words = main_game.targetText.split(" ", false)
 	if user_text_words == target_text_words:
-		main_game.on_round_completion();
+		on_round_completion()
+
+func on_round_completion():
+	# update main game data first
+	main_game.on_round_completion()
+	if !main_game.badSentenceDone:
+		selecting_enabled = false
+	else:
+		selecting_enabled = true
+	print(selecting_enabled)
 
 class SpellingHighlighter extends SyntaxHighlighter:
 	func _get_line_syntax_highlighting(line: int) -> Dictionary:
@@ -112,3 +121,37 @@ func update_highlights():
 		syntax_highlighter = WordsHighlighter.new()
 	else:
 		syntax_highlighter = SpellingHighlighter.new()
+
+
+
+# controlling inputs
+
+const blocked_actions = [
+	"ui_paste",
+	"ui_text_caret_left",
+	"ui_text_caret_right",
+	"ui_text_caret_up",
+	"ui_text_caret_down",
+	"ui_text_caret_word_left",
+	"ui_text_caret_word_right",
+	"ui_text_caret_line_start",
+	"ui_text_caret_line_end",
+	"ui_text_caret_page_up",
+	"ui_text_caret_page_down",
+	"ui_text_caret_document_start",
+	"ui_text_caret_document_end"
+]
+
+func _gui_input(event: InputEvent) -> void:
+	
+	if !main_game.badSentenceDone:
+		# block enter and tab keys
+		if event is InputEventKey:
+			if event.keycode == KEY_ENTER || event.keycode == KEY_KP_ENTER || event.keycode == KEY_TAB:
+				accept_event()
+		
+		for i in blocked_actions:
+			if event.is_action(i):
+				accept_event()
+	else:
+		selecting_enabled = true

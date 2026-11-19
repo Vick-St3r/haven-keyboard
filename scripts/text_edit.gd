@@ -48,7 +48,8 @@ func process_input_A():
 	
 	# update sentence if user types everything correctly
 	if actual_text == main_game.targetText:
-		#actual_text = "" # reset for the next round
+		actual_text = "" # reset for the next round
+		prev_length = 0
 		main_game.on_round_completion();
 
 func process_input_B():
@@ -90,19 +91,9 @@ class WordsHighlighter extends SyntaxHighlighter:
 				color_map[word_start_indices[i]] = { "color": Color.RED }
 			elif user_text_words[i] == target_text_words[i]:
 				color_map[word_start_indices[i]] = { "color": Color.GREEN }
-				print(user_text_words[i])
-				print(target_text_words[i])
 			else:
 				color_map[word_start_indices[i]] = { "color": Color.RED }
 		
-		#for i in user_text.length():
-			#if i >= target_text.length():
-				#color_map[i] = { "color": Color.RED }
-			#elif user_text[i] == target_text[i]:
-				#color_map[i] = { "color": Color.GREEN }
-			#else:
-				#color_map[i] = { "color": Color.RED }
-			
 		return color_map
 
 func get_word_start_indices(text):

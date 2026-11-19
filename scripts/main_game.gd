@@ -9,7 +9,7 @@ signal reportcard(grade: String, wpm: float, sec: float)
 const textFilesPath = "res://texts/"
 @onready var texts = [
 	#"Mitosis is a part of the cell cycle in eukaryotic cells in which replicated chromosomes are separated into two new nuclei. Cell division by mitosis is an equational division which gives rise to genetically identical cells in which the total number of chromosomes is maintained.",
-	"A mitochondrion is an organelle. found in the cells of most eukaryotes, such as animals, plants and fungi. Mitochondria have a double membrane structure and use aerobic respiration to generate adenosine triphosphate (ATP), which is used throughout the cell as a source of chemical energy. They were discovered by Albert von Kölliker in 1857 in the voluntary muscles of insects. The term mitochondrion, meaning \"a thread-like granule\", was coined by Carl Benda in 1898. The mitochondrion is popularly nicknamed the \"powerhouse of the cell\", a phrase popularized by Philip Siekevitz in a 1957 Scientific American article of the same name.",
+	"A mitochondrion is an organelle found in the cells of most eukaryotes, such as animals, plants and fungi. Mitochondria have a double membrane structure and use aerobic respiration to generate adenosine triphosphate (ATP), which is used throughout the cell as a source of chemical energy. They were discovered by Albert von Kölliker in 1857 in the voluntary muscles of insects. The term mitochondrion, meaning \"a thread-like granule\", was coined by Carl Benda in 1898. The mitochondrion is popularly nicknamed the \"powerhouse of the cell\", a phrase popularized by Philip Siekevitz in a 1957 Scientific American article of the same name.",
 	#"An organism is any living thing that functions as an individual. Such a definition raises more problems than it solves, not least because the concept of an individual is also difficult. Several criteria, few of which are widely accepted, have been proposed to define what constitutes an organism. Among the most common is that an organism has autonomous reproduction, growth, and metabolism. This would exclude viruses, even though they evolve like organisms.",
 	#"Photosynthesis is a system of biological processes by which photopigment-bearing autotrophic organisms, such as most plants, algae and cyanobacteria, convert light energy--typically from sunlight--into the chemical energy necessary to fuel their metabolism. The term photosynthesis usually refers to oxygenic photosynthesis, a process that releases oxygen as a byproduct of water splitting. Photosynthetic organisms store the converted chemical energy within the bonds of intracellular organic compounds (complex compounds containing carbon), typically carbohydrates like sugars (mainly glucose, fructose and sucrose), starches, phytoglycogen and cellulose."
 ]
@@ -53,7 +53,7 @@ func _ready() -> void:
 func scrambleText(text):
 	var words = text.split(" ", false)
 	for i in words.size() - 1:
-		if randi_range(0, 1) == 0:
+		if randi_range(0, 9) == 0:
 			words = swapAtIndex(words, i)
 	return " ".join(words)
 	

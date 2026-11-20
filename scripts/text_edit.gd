@@ -90,7 +90,7 @@ class SpellingHighlighter extends SyntaxHighlighter:
 			if i >= user_text.length():
 				color_map[i] = { "color": Color.WEB_GRAY }
 			elif user_text[i] == target_text[i]:
-				color_map[i] = { "color": Color.GREEN }
+				color_map[i] = { "color": Color.BLACK }
 			else:
 				color_map[i] = { "color": Color.RED }
 			
@@ -111,7 +111,7 @@ class WordsHighlighter extends SyntaxHighlighter:
 			if i >= target_text_words.size():
 				color_map[word_start_indices[i]] = { "color": Color.RED }
 			elif user_text_words[i] == target_text_words[i]:
-				color_map[word_start_indices[i]] = { "color": Color.GREEN }
+				color_map[word_start_indices[i]] = { "color": Color.BLACK }
 			else:
 				color_map[word_start_indices[i]] = { "color": Color.RED }
 		

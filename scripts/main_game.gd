@@ -32,7 +32,7 @@ func _ready() -> void:
 	#check if text files exist
 	var textsCount = 0
 	for file in DirAccess.get_files_at(textFilesUserPath):
-		if(file.get_extension() == "txt"):
+		if file.get_extension() == "txt":
 			textsCount += 1
 			
 	if not DirAccess.dir_exists_absolute(textFilesUserPath) or textsCount == 0:
@@ -40,9 +40,16 @@ func _ready() -> void:
 		
 	# load contents of a random txt file
 	randomize()
-	var allTextFilePaths = DirAccess.get_files_at(textFilesUserPath)
-	var chosenTextFile = allTextFilePaths[randi_range(0,allTextFilePaths.size() - 1)]
-	originalText = FileAccess.get_file_as_string(chosenTextFile)
+	var allUserFilesInTextsDir = DirAccess.get_files_at(textFilesUserPath)
+	
+	#only keep txt files
+	var allTextFiles: Array[String] = [] 
+	for i in range(0, allUserFilesInTextsDir.size()):
+		if allUserFilesInTextsDir[i].get_extension() == "txt":
+			allTextFiles.append(allUserFilesInTextsDir[i])
+	
+	var chosenFilePath = textFilesUserPath.path_join(allTextFiles.pick_random())
+	originalText = FileAccess.get_file_as_string(chosenFilePath)
 	originalSentences = originalText.split(".", false)
 	scrambledSentences = originalSentences.duplicate()
 	for i in scrambledSentences.size():

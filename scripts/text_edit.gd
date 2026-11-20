@@ -158,6 +158,10 @@ func _gui_input(event: InputEvent) -> void:
 			if event.keycode == KEY_ENTER || event.keycode == KEY_KP_ENTER || event.keycode == KEY_TAB:
 				accept_event()
 		
+		# block mouse buttons
+		if event is InputEventMouseButton:
+			accept_event()
+		
 		for i in blocked_actions:
 			if event.is_action(i):
 				accept_event()

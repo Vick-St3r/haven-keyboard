@@ -25,29 +25,34 @@ func _on_text_changed() -> void:
 
 func process_input_A():
 	var cur_length = text.length()
-	# checks if a character was added
+	
 	if cur_length >= prev_length:
+		# character was added
 		
-		if text.length() <= main_game.targetText.length():
-			
+		# the characters that were typed between previous check and this check
+		var diff = text.substr(get_caret_column() - (cur_length - prev_length), cur_length - prev_length)
+		set_text(main_game.targetText)
+		
+		# track the new typed content, but don't apply it until we check that it's valid
+		var new_actual_text = actual_text + diff
+		
+		# do not allow length of typed text to exceed length of target text
+		if new_actual_text.length() <= main_game.targetText.length():
 			# allow adding a character if the following conditions are met:
 			# expected character is not a space
 			# OR expected character is a space, player has typed everything before correctly, and player types a space
-			if main_game.targetText[text.length()-1] != ' ' || (actual_text == main_game.targetText.substr(0, text.length()-1) && text[text.length()-1] == ' '):
-				actual_text += text.substr(text.length() - (cur_length - prev_length))
-				set_text(main_game.targetText.substr(0, text.length()))	
-				set_caret_column(get_line(0).length())
-			else:
-				set_text(main_game.targetText.substr(0, text.length()-1))
-				set_caret_column(get_line(0).length())
-		else:
-			set_text(main_game.targetText)
-			set_caret_column(get_line(0).length())
+			if main_game.targetText[new_actual_text.length()-1] != ' ' || (actual_text == main_game.targetText.substr(0, new_actual_text.length()-1) && new_actual_text[new_actual_text.length()-1] == ' '):
+				actual_text += diff	
+			
 	else:
-		set_text(main_game.targetText.substr(0, text.length()))
-		set_caret_column(get_line(0).length())
-		actual_text = actual_text.substr(0, actual_text.length() - (prev_length - cur_length))
+		# character was removed
+		var chars_removed = prev_length - cur_length
+		set_text(main_game.targetText)
+		actual_text = actual_text.substr(0, actual_text.length() - chars_removed)
 		
+	# always keep caret in sync with how much has been typed
+	set_caret_column(actual_text.length())
+	
 	prev_length = text.length()
 	
 	# update sentence if user types everything correctly
@@ -153,5 +158,3 @@ func _gui_input(event: InputEvent) -> void:
 		for i in blocked_actions:
 			if event.is_action(i):
 				accept_event()
-	else:
-		selecting_enabled = true

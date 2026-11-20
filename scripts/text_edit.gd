@@ -58,7 +58,9 @@ func process_input_A():
 	
 	# update sentence if user types everything correctly
 	if actual_text == main_game.targetText:
-		actual_text = "" # reset for the next round
+		# update and reset data for next round
+		main_game.characters_already_typed += actual_text.length();
+		actual_text = ""
 		prev_length = 0
 		on_round_completion()
 		

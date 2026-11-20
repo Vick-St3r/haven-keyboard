@@ -99,7 +99,7 @@ func _process(delta: float) -> void:
 		get_tree().change_scene_to_file("res://scenes/score.tscn")
 
 func _on_text_edit_text_changed() -> void:
-	total_characters_typed = textedit.text.length() + characters_already_typed
+	total_characters_typed = textedit.actual_text.length() + characters_already_typed
 		
 
 func on_round_completion():
@@ -128,10 +128,6 @@ func goToNextSentence():
 		Signalsender.final_sec = sec
 		get_tree().change_scene_to_file("res://scenes/score.tscn")
 	setTargetText(scrambledSentences[curSentence].strip_edges() + ".")
-	characters_already_typed += textedit.text.length()
-	textedit.clear()
-	# update label to show new text
-	#targetTextDisplay.text = targetText
 	
 	# initialize text preview
 	textedit.set_text(targetText)

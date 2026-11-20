@@ -3,7 +3,7 @@ extends Node
 signal reportcard(grade: String, wpm: float, sec: float)
 
 @onready var textedit = $TextEdit
-var targetText;
+@onready var targetText = "";
 @onready var targetTextDisplay = $texttype
 @onready var timertext = $clock/time
 const textFilesPath = "res://texts/"
@@ -41,18 +41,20 @@ func _ready() -> void:
 	for i in scrambledSentences.size():
 		scrambledSentences[i] = scrambleText(scrambledSentences[i])
 	targetText = scrambledSentences[curSentence] + "."
-	targetTextDisplay.push_color(Color.BLACK)
-	targetTextDisplay.add_text(targetText)
+	#targetTextDisplay.add_text(targetText)
+	
+	# initialize text preview
+	textedit.set_text(targetText)
 
 	startTimer()
 	
 	textedit.position.x = targetTextDisplay.position.x;
-	textedit.position.y = targetTextDisplay.position.y-2;
+	textedit.position.y = targetTextDisplay.position.y;
 	textedit.size.x = targetTextDisplay.size.x;
 	textedit.size.y = targetTextDisplay.size.y;
 
 func scrambleText(text):
-	var words = text.split(" ")
+	var words = text.split(" ", false)
 	for i in words.size() - 1:
 		if randi_range(0, 9) == 0:
 			words = swapAtIndex(words, i)
@@ -66,7 +68,7 @@ func swapAtIndex(arr, index):
 	return arr;
 
 func startTimer():
-	timeLimit = originalText.split(" ").size() * 1.5;
+	timeLimit = originalText.split(" ", false).size() * 1.5;
 	timeLeft = timeLimit;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -97,59 +99,66 @@ func _process(delta: float) -> void:
 		get_tree().change_scene_to_file("res://scenes/score.tscn")
 
 func _on_text_edit_text_changed() -> void:
-	total_characters_typed = textedit.text.length() + characters_already_typed
-	if textedit.text == targetText:
-		if !badSentenceDone:
-			targetText = originalSentences[curSentence].strip_edges() + "."
-			badSentenceDone = true
-			# handle case where there were no typos in original - immediately go to next sentence
-			if textedit.text == targetText:
-				goToNextSentence()
-		else:
+	total_characters_typed = textedit.actual_text.length() + characters_already_typed
+		
+
+func on_round_completion():
+	if !badSentenceDone:
+		badSentenceDone = true
+		setTargetText(originalSentences[curSentence].strip_edges() + ".")
+		# hide original text while correcting words
+		targetTextDisplay.clear()
+		# handle case where there were no typos in original - immediately go to next sentence
+		if textedit.text == targetText:
 			goToNextSentence()
-		targetTextDisplay.text = targetText
-	updateTextDisplay()
+	else:
+		goToNextSentence()
+
+func setTargetText(newText):
+	targetText = newText
+	textedit.update_highlights()
 
 func goToNextSentence():
 	curSentence += 1;
+	badSentenceDone = false
 	# end game once the player finishes the last sentence
 	if curSentence >= originalSentences.size():
 		Signalsender.final_grade = grade.text
 		Signalsender.final_wpm = wpm
 		Signalsender.final_sec = sec
 		get_tree().change_scene_to_file("res://scenes/score.tscn")
-	targetText = scrambledSentences[curSentence].strip_edges() + "."
-	characters_already_typed += textedit.text.length()
-	textedit.clear()
-	badSentenceDone = false
-
-
-func updateTextDisplay():
-	targetTextDisplay.clear()
-	if !badSentenceDone:
-		# check if typed text matches
-		for i in min(textedit.text.length(), targetText.length()):
-			if textedit.text[i] == targetText[i]:
-				targetTextDisplay.push_color(Color.GREEN)
-			else:
-				targetTextDisplay.push_color(Color.RED)
-			targetTextDisplay.add_text(targetText[i])
-			targetTextDisplay.pop_all()
-			
-		# fill in the remaining text
-		targetTextDisplay.push_color(Color.BLACK)
-		targetTextDisplay.add_text(targetText.substr(textedit.text.length()))
-		targetTextDisplay.pop_all()
 	else:
-		# check if it matches word by word
-		var targetWords = targetText.split(" ")
-		var typedWords = textedit.text.split(" ")
-		for i in typedWords.size():
-			if i < targetWords.size() && typedWords[i] == targetWords[i]:
-				targetTextDisplay.push_color(Color.GREEN)
-			else:
-				targetTextDisplay.push_color(Color.RED)
-			targetTextDisplay.add_text(typedWords[i] + " ")
-			targetTextDisplay.pop_all()
-
+		setTargetText(scrambledSentences[curSentence].strip_edges() + ".")
 		
+		# initialize text preview
+		textedit.set_text(targetText)
+
+
+
+#func updateTextDisplay():
+	#targetTextDisplay.clear()
+	#if !badSentenceDone:
+		## check if typed text matches
+		#for i in min(textedit.text.length(), targetText.length()):
+			#if textedit.text[i] == targetText[i]:
+				#targetTextDisplay.push_bgcolor(Color.GREEN)
+			#else:
+				#targetTextDisplay.push_bgcolor(Color.RED)
+			#targetTextDisplay.add_text(targetText[i])
+			#targetTextDisplay.pop_all()
+			#
+		## fill in the remaining text
+		#targetTextDisplay.push_color(Color.BLACK)
+		#targetTextDisplay.add_text(targetText.substr(textedit.text.length()))
+		#targetTextDisplay.pop_all()
+	#else:
+		## check if it matches word by word
+		#var targetWords = targetText.split(" ")
+		#var typedWords = textedit.text.split(" ")
+		#for i in typedWords.size():
+			#if i < targetWords.size() && typedWords[i] == targetWords[i]:
+				#targetTextDisplay.push_bgcolor(Color.GREEN)
+			#else:
+				#targetTextDisplay.push_bgcolor(Color.RED)
+			#targetTextDisplay.add_text(typedWords[i] + " ")
+			#targetTextDisplay.pop_all()

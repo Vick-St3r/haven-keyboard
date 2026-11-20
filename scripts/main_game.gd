@@ -3,16 +3,12 @@ extends Node
 signal reportcard(grade: String, wpm: float, sec: float)
 
 @onready var textedit = $TextEdit
-@onready var targetText = "";
+var targetText = "";
 @onready var targetTextDisplay = $texttype
 @onready var timertext = $clock/time
-const textFilesPath = "res://texts/"
-@onready var texts = [
-	"Mitosis is a part of the cell cycle in eukaryotic cells in which replicated chromosomes are separated into two new nuclei. Cell division by mitosis is an equational division which gives rise to genetically identical cells in which the total number of chromosomes is maintained.",
-	"A mitochondrion is an organelle found in the cells of most eukaryotes, such as animals, plants and fungi. Mitochondria have a double membrane structure and use aerobic respiration to generate adenosine triphosphate (ATP), which is used throughout the cell as a source of chemical energy. They were discovered by Albert von Kölliker in 1857 in the voluntary muscles of insects. The term mitochondrion, meaning \"a thread-like granule\", was coined by Carl Benda in 1898. The mitochondrion is popularly nicknamed the \"powerhouse of the cell\", a phrase popularized by Philip Siekevitz in a 1957 Scientific American article of the same name.",
-	"An organism is any living thing that functions as an individual. Such a definition raises more problems than it solves, not least because the concept of an individual is also difficult. Several criteria, few of which are widely accepted, have been proposed to define what constitutes an organism. Among the most common is that an organism has autonomous reproduction, growth, and metabolism. This would exclude viruses, even though they evolve like organisms.",
-	"Photosynthesis is a system of biological processes by which photopigment-bearing autotrophic organisms, such as most plants, algae and cyanobacteria, convert light energy--typically from sunlight--into the chemical energy necessary to fuel their metabolism. The term photosynthesis usually refers to oxygenic photosynthesis, a process that releases oxygen as a byproduct of water splitting. Photosynthetic organisms store the converted chemical energy within the bonds of intracellular organic compounds (complex compounds containing carbon), typically carbohydrates like sugars (mainly glucose, fructose and sucrose), starches, phytoglycogen and cellulose."
-]
+
+const textFilesResourcePath = "res://texts/"
+const textFilesUserPath = "user://texts/"
 var originalSentences;
 var scrambledSentences;
 var curSentence = 0;
@@ -33,9 +29,27 @@ var minutes: float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# load a random one of the paragraphs
+	#check if text files exist
+	var textsCount = 0
+	for file in DirAccess.get_files_at(textFilesUserPath):
+		if file.get_extension() == "txt":
+			textsCount += 1
+			
+	if not DirAccess.dir_exists_absolute(textFilesUserPath) or textsCount == 0:
+		cloneTextResources()
+		
+	# load contents of a random txt file
 	randomize()
-	originalText = texts.pick_random()
+	var allUserFilesInTextsDir = DirAccess.get_files_at(textFilesUserPath)
+	
+	#only keep txt files
+	var allTextFiles: Array[String] = [] 
+	for i in range(0, allUserFilesInTextsDir.size()):
+		if allUserFilesInTextsDir[i].get_extension() == "txt":
+			allTextFiles.append(allUserFilesInTextsDir[i])
+	
+	var chosenFilePath = textFilesUserPath.path_join(allTextFiles.pick_random())
+	originalText = FileAccess.get_file_as_string(chosenFilePath)
 	originalSentences = originalText.split(".", false)
 	scrambledSentences = originalSentences.duplicate()
 	for i in scrambledSentences.size():
@@ -133,6 +147,15 @@ func goToNextSentence():
 		# initialize text preview
 		textedit.set_text(targetText)
 
+
+func cloneTextResources():
+	print("cloning text files...")
+	
+	DirAccess.make_dir_recursive_absolute(textFilesUserPath)
+	for file in DirAccess.get_files_at(textFilesResourcePath):
+		var from = textFilesResourcePath.path_join(file)
+		var to = textFilesUserPath.path_join(file)
+		DirAccess.copy_absolute(from, to)
 
 
 #func updateTextDisplay():

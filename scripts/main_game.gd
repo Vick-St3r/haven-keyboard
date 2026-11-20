@@ -146,7 +146,9 @@ func cloneTextResources():
 	
 	DirAccess.make_dir_recursive_absolute(textFilesUserPath)
 	for file in DirAccess.get_files_at(textFilesResourcePath):
-		DirAccess.copy_absolute(textFilesResourcePath.path_join(file),textFilesUserPath)
+		var from = textFilesResourcePath.path_join(file)
+		var to = textFilesUserPath.path_join(file)
+		DirAccess.copy_absolute(from, to)
 
 
 #func updateTextDisplay():

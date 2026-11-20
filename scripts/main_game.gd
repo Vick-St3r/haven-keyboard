@@ -41,7 +41,10 @@ func _ready() -> void:
 	for i in scrambledSentences.size():
 		scrambledSentences[i] = scrambleText(scrambledSentences[i])
 	targetText = scrambledSentences[curSentence] + "."
-	targetTextDisplay.add_text(targetText)
+	#targetTextDisplay.add_text(targetText)
+	
+	# initialize text preview
+	textedit.set_text(targetText)
 
 	startTimer()
 	
@@ -128,7 +131,10 @@ func goToNextSentence():
 	characters_already_typed += textedit.text.length()
 	textedit.clear()
 	# update label to show new text
-	targetTextDisplay.text = targetText
+	#targetTextDisplay.text = targetText
+	
+	# initialize text preview
+	textedit.set_text(targetText)
 
 
 

@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 	pass
 	
 
-var prev_length = 0
+#var prev_length = 0
 var actual_text = ""
 
 func _on_text_changed() -> void:
@@ -24,6 +24,7 @@ func _on_text_changed() -> void:
 		process_input_B()
 
 func process_input_A():
+	var prev_length = main_game.targetText.length()
 	var cur_length = text.length()
 	
 	if cur_length >= prev_length:
@@ -83,9 +84,9 @@ class SpellingHighlighter extends SyntaxHighlighter:
 		var text_edit = get_text_edit()
 		var user_text = text_edit.actual_text
 		var target_text = text_edit.main_game.targetText
-		for i in user_text.length():
-			if i >= target_text.length():
-				color_map[i] = { "color": Color.RED }
+		for i in target_text.length():
+			if i >= user_text.length():
+				color_map[i] = { "color": Color.WEB_GRAY }
 			elif user_text[i] == target_text[i]:
 				color_map[i] = { "color": Color.GREEN }
 			else:

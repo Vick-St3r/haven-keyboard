@@ -50,6 +50,7 @@ func _ready() -> void:
 	#sets up text + scramble
 	var chosenFilePath = textFilesUserPath.path_join(allTextFiles.pick_random())
 	originalText = FileAccess.get_file_as_string(chosenFilePath)
+	originalText = clean_string(originalText)
 	originalSentences = originalText.split(".", false)
 	scrambledSentences = originalSentences.duplicate()
 	for i in scrambledSentences.size():
@@ -66,6 +67,17 @@ func _ready() -> void:
 	textedit.position.y = targetTextDisplay.position.y;
 	textedit.size.x = targetTextDisplay.size.x;
 	textedit.size.y = targetTextDisplay.size.y;
+
+# removes any non-printable characters from a string
+func clean_string(text):
+	# remove any extra spaces around the string
+	text = text.strip_edges()
+	var new_string = ""
+	for i in text.length():
+		if text.unicode_at(i) >= 32 && text.unicode_at(i) <= 126:
+			new_string += text[i]
+	return new_string
+	
 
 func scrambleText(text):
 	var words = text.split(" ", false)
@@ -115,6 +127,7 @@ func _process(delta: float) -> void:
 
 func _on_text_edit_text_changed() -> void:
 	total_characters_typed = textedit.actual_text.length() + characters_already_typed
+	print(originalSentences)
 
 func on_round_completion():
 	if !badSentenceDone:

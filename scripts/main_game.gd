@@ -6,6 +6,8 @@ signal reportcard(grade: String, wpm: float, sec: float)
 var targetText = "";
 @onready var targetTextDisplay = $texttype
 @onready var timertext = $clock/time
+@onready var animation_player: AnimationPlayer = $Shaders/AnimationPlayer
+@onready var camera: Camera2D = $Camera2D
 
 const textFilesResourcePath = "res://texts/"
 const textFilesUserPath = "user://texts/"
@@ -165,6 +167,10 @@ func goToNextSentence():
 		
 		# initialize text preview
 		textedit.set_text(targetText)
+	
+	camera.screen_shake(20, 0.2)
+	animation_player.play("shockwave")
+	animation_player.queue("RESET")
 
 
 func cloneTextResources():

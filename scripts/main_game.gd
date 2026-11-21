@@ -30,7 +30,8 @@ var minutes: float = 0.0
 func _ready() -> void:
 	#check if text files exist
 	var textsCount = 0
-	for file in DirAccess.get_files_at(textFilesUserPath):
+	#for file in DirAccess.get_files_at(textFilesUserPath):
+	for file in DirAccess.get_files_at(textFilesResourcePath):
 		if file.get_extension() == "txt":
 			textsCount += 1
 			
@@ -39,16 +40,21 @@ func _ready() -> void:
 		
 	# load contents of a random txt file
 	randomize()
-	var allUserFilesInTextsDir = DirAccess.get_files_at(textFilesUserPath)
+	#var allUserFilesInTextsDir = DirAccess.get_files_at(textFilesUserPath)
+	var allTextsInResourceDir = DirAccess.get_files_at(textFilesResourcePath)
 	
 	#only keep txt files
 	var allTextFiles: Array[String] = [] 
-	for i in range(0, allUserFilesInTextsDir.size()):
-		if allUserFilesInTextsDir[i].get_extension() == "txt":
-			allTextFiles.append(allUserFilesInTextsDir[i])
+	#for i in range(0, allUserFilesInTextsDir.size()):
+		#if allUserFilesInTextsDir[i].get_extension() == "txt":
+			#allTextFiles.append(allUserFilesInTextsDir[i])
+	for i in range(0, allTextsInResourceDir.size()):
+		if allTextsInResourceDir[i].get_extension() == "txt":
+			allTextFiles.append(allTextsInResourceDir[i])
 	
 	#sets up text + scramble
-	var chosenFilePath = textFilesUserPath.path_join(allTextFiles.pick_random())
+	#var chosenFilePath = textFilesUserPath.path_join(allTextFiles.pick_random())
+	var chosenFilePath = textFilesResourcePath.path_join(allTextFiles.pick_random())
 	originalText = FileAccess.get_file_as_string(chosenFilePath)
 	originalText = clean_string(originalText)
 	originalSentences = originalText.split(".", false)
@@ -127,7 +133,6 @@ func _process(delta: float) -> void:
 
 func _on_text_edit_text_changed() -> void:
 	total_characters_typed = textedit.actual_text.length() + characters_already_typed
-	print(originalSentences)
 
 func on_round_completion():
 	if !badSentenceDone:

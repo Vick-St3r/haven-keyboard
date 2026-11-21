@@ -19,7 +19,8 @@ var actual_text = ""
 func _on_text_changed() -> void:
 	if !main_game.badSentenceDone:
 		process_input_A()
-		print(actual_text)
+		#print(actual_text)
+		#^ took up so much space in terminal
 	else:
 		process_input_B()
 

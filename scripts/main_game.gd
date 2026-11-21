@@ -15,7 +15,6 @@ var curSentence = 0;
 var badSentenceDone = false;
 var sec: float = 0.0
 var timeLeft: float = 0.0;
-var timeLimit = 0;
 var originalText;
 
 var total_characters_typed: int = 0
@@ -48,6 +47,7 @@ func _ready() -> void:
 		if allUserFilesInTextsDir[i].get_extension() == "txt":
 			allTextFiles.append(allUserFilesInTextsDir[i])
 	
+	#sets up text + scramble
 	var chosenFilePath = textFilesUserPath.path_join(allTextFiles.pick_random())
 	originalText = FileAccess.get_file_as_string(chosenFilePath)
 	originalSentences = originalText.split(".", false)
@@ -73,7 +73,6 @@ func scrambleText(text):
 		if randi_range(0, 9) == 0:
 			words = swapAtIndex(words, i)
 	return " ".join(words)
-	
 
 func swapAtIndex(arr, index):
 	var temp = arr[index+1]
@@ -82,12 +81,13 @@ func swapAtIndex(arr, index):
 	return arr;
 
 func startTimer():
-	timeLimit = originalText.split(" ", false).size() * 1.5;
-	timeLeft = timeLimit;
+	Global.timeLimit = originalText.split(" ", false).size() * 1.5;
+	timeLeft = Global.timeLimit;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	sec +=delta
+	#time + wpm calculations
+	sec += delta
 	timeLeft -= delta
 	timertext.text = str(int(timeLeft))
 	minutes = sec/60
@@ -105,6 +105,7 @@ func _process(delta: float) -> void:
 	else:
 		grade.text = "F"
 
+	# player loses
 	if timeLeft <= 0:
 		grade.text = "F";
 		Signalsender.final_grade = grade.text
@@ -114,7 +115,6 @@ func _process(delta: float) -> void:
 
 func _on_text_edit_text_changed() -> void:
 	total_characters_typed = textedit.actual_text.length() + characters_already_typed
-		
 
 func on_round_completion():
 	if !badSentenceDone:
@@ -135,6 +135,7 @@ func setTargetText(newText):
 func goToNextSentence():
 	curSentence += 1;
 	badSentenceDone = false
+	# win condition
 	# end game once the player finishes the last sentence
 	if curSentence >= originalSentences.size():
 		Signalsender.final_grade = grade.text

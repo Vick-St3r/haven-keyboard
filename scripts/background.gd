@@ -1,9 +1,11 @@
 extends Node
 
+#this is "_"
 @onready var mouse = $mouse
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#makes _ disappear and reappear
 	var tween = create_tween().set_loops()
 	tween.tween_interval(0.6)
 	tween.tween_callback(func(): mouse.visible = false)

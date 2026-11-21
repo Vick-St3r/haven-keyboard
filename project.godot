@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Signalsender="*uid://bgq3rns1c72e2"
+Global="*uid://bm87da02o7t64"
 
 [display]
 

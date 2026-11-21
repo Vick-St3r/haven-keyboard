@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://baqgtxa0ase7l" path="res://assets/maingame/wpmmm.png" id="8_5cypo"]
 [ext_resource type="Texture2D" uid="uid://b8qgyay5rndat" path="res://assets/maingame/stopwatch.png" id="9_2l77h"]
 [ext_resource type="Texture2D" uid="uid://b7kgnjo035t42" path="res://assets/maingame/gradeui.png" id="10_nqdth"]
+[ext_resource type="PackedScene" uid="uid://dyhusmoefy2au" path="res://scenes/camerashake.tscn" id="12_o6v7o"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xrivr"]
 animations = [{
@@ -127,5 +128,8 @@ theme_override_styles/normal = SubResource("StyleBoxLine_hraha")
 theme_override_styles/focus = SubResource("StyleBoxTexture_nqdth")
 wrap_mode = 1
 script = ExtResource("5_70vka")
+
+[node name="Camera2D" parent="." unique_id=306515462 instance=ExtResource("12_o6v7o")]
+anchor_mode = 0
 
 [connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]

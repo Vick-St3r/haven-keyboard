@@ -17,6 +17,7 @@ void fragment() {
 	}
 	color /= float(samples);
 	COLOR = color;
+	
 }
 
 //void light() {

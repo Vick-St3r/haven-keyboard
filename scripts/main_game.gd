@@ -1,6 +1,6 @@
 extends Node
 
-signal reportcard(grade: String, wpm: float, sec: float)
+signal reportcard(grade: String, wpm: float, sec: float, accuracy: float)
 
 @onready var textedit = $TextEdit
 var targetText = "";
@@ -133,6 +133,7 @@ func _process(delta: float) -> void:
 		Signalsender.final_grade = grade.text
 		Signalsender.final_wpm = wpm
 		Signalsender.final_sec = sec
+		Signalsender.final_accuracy = textedit.accuracy
 		get_tree().change_scene_to_file("res://scenes/score.tscn")
 
 func _on_text_edit_text_changed() -> void:
@@ -163,6 +164,7 @@ func goToNextSentence():
 		Signalsender.final_grade = grade.text
 		Signalsender.final_wpm = wpm
 		Signalsender.final_sec = sec
+		Signalsender.final_accuracy = textedit.accuracy
 		get_tree().change_scene_to_file("res://scenes/score.tscn")
 	else:
 		setTargetText(scrambledSentences[curSentence].strip_edges() + ".")

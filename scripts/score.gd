@@ -8,6 +8,7 @@ extends Node
 var grade: String
 var wpm: float
 var sec: float
+var accuracy: float
 
 @onready var wpmchar = $reportcard/wpmdesc/wpmchar
 @onready var wpmfeed = $reportcard/wpmdesc/wpmfeed
@@ -26,10 +27,12 @@ func _ready() -> void:
 	grade = Signalsender.final_grade
 	wpm = Signalsender.final_wpm
 	sec = Signalsender.final_sec
+	accuracy = Signalsender.final_accuracy
 	
 	print("Grade: ", grade)
 	print("WPM: ", wpm)
 	print("Time: ", sec)
+	print("Accuracy: ", sec)
 	
 	gradetext.text = str(grade)
 	wpmtext.text = str(int(wpm))

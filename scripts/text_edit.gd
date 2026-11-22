@@ -50,6 +50,8 @@ func process_input_A():
 			# OR expected character is a space, player has typed everything before correctly, and player types a space
 			if main_game.targetText[new_actual_text.length()-1] != ' ' || (actual_text == main_game.targetText.substr(0, new_actual_text.length()-1) && new_actual_text[new_actual_text.length()-1] == ' '):
 				actual_text += diff	
+			else:
+				camera.screen_shake(5, 0.1)
 		
 		# check if added text is wrong
 		if actual_text != main_game.targetText.substr(0, actual_text.length()):

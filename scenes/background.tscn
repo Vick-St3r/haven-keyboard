@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://csh70pvxvbjwu" path="res://scenes/button.tscn" id="6_wax1t"]
 [ext_resource type="PackedScene" uid="uid://gumgjbv6ikxh" path="res://scenes/buttonconfig.tscn" id="7_1tmhi"]
 [ext_resource type="PackedScene" uid="uid://cjy6bekpqojnp" path="res://scenes/credits.tscn" id="8_l5f8m"]
+[ext_resource type="AudioStream" uid="uid://c4t1m7mksa24j" path="res://assets/audio/intro.wav" id="9_6vm3t"]
 
 [node name="background" type="Node" unique_id=1953703789]
 script = ExtResource("1_l5f8m")
@@ -42,3 +43,7 @@ texture = ExtResource("5_wax1t")
 [node name="config" parent="." unique_id=1646154581 instance=ExtResource("7_1tmhi")]
 
 [node name="credits" parent="." unique_id=2113251891 instance=ExtResource("8_l5f8m")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1974573632]
+stream = ExtResource("9_6vm3t")
+autoplay = true

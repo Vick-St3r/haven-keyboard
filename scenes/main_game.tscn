@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b7kgnjo035t42" path="res://assets/maingame/gradeui.png" id="10_nqdth"]
 [ext_resource type="PackedScene" uid="uid://dyhusmoefy2au" path="res://scenes/camerashake.tscn" id="12_o6v7o"]
 [ext_resource type="PackedScene" uid="uid://cuy2k07mfyh73" path="res://scenes/shaders.tscn" id="13_wjob3"]
+[ext_resource type="AudioStream" uid="uid://bcqhgtsi7yhcl" path="res://assets/audio/soundtrack.wav" id="14_8xp80"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xrivr"]
 animations = [{
@@ -174,5 +175,9 @@ hue_variation_curve = SubResource("Curve_sp04v")
 anchor_mode = 0
 
 [node name="Shaders" parent="." unique_id=1499657877 instance=ExtResource("13_wjob3")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=845096960]
+stream = ExtResource("14_8xp80")
+autoplay = true
 
 [connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]

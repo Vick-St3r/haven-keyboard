@@ -93,10 +93,22 @@ offset_top = -67.0
 offset_right = 48.0
 offset_bottom = 8.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/paragraph_spacing = -10
 theme_override_fonts/font = ExtResource("2_72e8q")
 theme_override_font_sizes/font_size = 28
 text = "WPM: 
 "
+
+[node name="accuracy" type="Label" parent="stickynote" unique_id=1813165814]
+offset_left = -76.0
+offset_top = -2.0
+offset_right = 47.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/paragraph_spacing = -10
+theme_override_fonts/font = ExtResource("2_72e8q")
+theme_override_font_sizes/font_size = 28
+text = "Accuracy:"
 
 [node name="clock" type="Sprite2D" parent="." unique_id=1052357420]
 position = Vector2(93, 529)

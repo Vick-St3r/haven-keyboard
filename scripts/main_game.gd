@@ -26,6 +26,7 @@ var characters_already_typed = 0;
 var minutes: float = 0.0
 
 @onready var wpmnote = $stickynote/wpm
+@onready var accuracy_note = $stickynote/accuracy
 @onready var grade = $grade/actualgrade
 
 # Called when the node enters the scene tree for the first time.
@@ -113,6 +114,7 @@ func _process(delta: float) -> void:
 	minutes = sec/60
 	wpm = (total_characters_typed/5)/(minutes +0.000001)
 	wpmnote.text = "WPM: \n" + str(wpm)
+	accuracy_note.text = "Accuracy: \n" + str(roundi(textedit.accuracy)) + "%"
 	
 	if wpm >= 80:
 		grade.text = "A"

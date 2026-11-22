@@ -14,15 +14,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
-
-#var prev_length = 0
 var actual_text = ""
+var total_chars_typed = 0
+var wrong_chars_typed = 0
+var accuracy : float = 0.0
 
 func _on_text_changed() -> void:
 	if !main_game.badSentenceDone:
 		process_input_A()
-		#print(actual_text)
-		#^ took up so much space in terminal
+		accuracy = float(total_chars_typed - wrong_chars_typed) / total_chars_typed * 100
 	else:
 		process_input_B()
 		particles.global_position = get_caret_draw_pos() + global_position
@@ -39,6 +39,7 @@ func process_input_A():
 		# the characters that were typed between previous check and this check
 		var diff = text.substr(get_caret_column() - (cur_length - prev_length), cur_length - prev_length)
 		set_text(main_game.targetText)
+		total_chars_typed += diff.length()
 		
 		# track the new typed content, but don't apply it until we check that it's valid
 		var new_actual_text = actual_text + diff
@@ -51,11 +52,14 @@ func process_input_A():
 			if main_game.targetText[new_actual_text.length()-1] != ' ' || (actual_text == main_game.targetText.substr(0, new_actual_text.length()-1) && new_actual_text[new_actual_text.length()-1] == ' '):
 				actual_text += diff	
 			else:
+				wrong_chars_typed += diff.length()
 				camera.screen_shake(5, 0.1)
 		
 		# check if added text is wrong
 		if actual_text != main_game.targetText.substr(0, actual_text.length()):
+			wrong_chars_typed += diff.length()
 			camera.screen_shake(5, 0.1)
+			
 		
 	else:
 		# character was removed

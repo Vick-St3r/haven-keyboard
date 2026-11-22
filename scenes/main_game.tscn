@@ -36,6 +36,14 @@ color = Color(0, 0, 0, 0)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nqdth"]
 
+[sub_resource type="Gradient" id="Gradient_wjob3"]
+colors = PackedColorArray(0.22792342, 0.81765294, 0.9999998, 1, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_sp04v"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="main game" type="Node" unique_id=224379156]
 script = ExtResource("1_s3esy")
 
@@ -129,6 +137,26 @@ theme_override_styles/normal = SubResource("StyleBoxLine_hraha")
 theme_override_styles/focus = SubResource("StyleBoxTexture_nqdth")
 wrap_mode = 1
 script = ExtResource("5_70vka")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="TextEdit" unique_id=898067444]
+emitting = false
+amount = 10
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.07
+direction = Vector2(0, -90)
+spread = 96.35
+gravity = Vector2(0, 200)
+initial_velocity_max = 87.2
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+scale_amount_max = 5.0
+color = Color(0.7059862, 0.9018882, 0.972354, 1)
+color_ramp = SubResource("Gradient_wjob3")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_sp04v")
 
 [node name="Camera2D" parent="." unique_id=306515462 instance=ExtResource("12_o6v7o")]
 anchor_mode = 0

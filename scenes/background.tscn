@@ -4,8 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://rxhao814tnf6" path="res://assets/menu/menubg.png" id="2_6vm3t"]
 [ext_resource type="Texture2D" uid="uid://xk7ovj65gjyi" path="res://assets/menu/menutitle.png" id="3_8efq7"]
 [ext_resource type="Texture2D" uid="uid://cbqcghea7k26p" path="res://assets/menu/cursortitlething.png" id="4_da6cc"]
-[ext_resource type="Texture2D" uid="uid://bu8cihgu2t1cf" path="res://assets/menu/menutextything.png" id="5_b6e46"]
+[ext_resource type="Texture2D" uid="uid://ch2th8r0l47oq" path="res://assets/menu/smithmenutextything.png" id="5_wax1t"]
 [ext_resource type="PackedScene" uid="uid://csh70pvxvbjwu" path="res://scenes/button.tscn" id="6_wax1t"]
+[ext_resource type="PackedScene" uid="uid://gumgjbv6ikxh" path="res://scenes/buttonconfig.tscn" id="7_1tmhi"]
+[ext_resource type="PackedScene" uid="uid://cjy6bekpqojnp" path="res://scenes/credits.tscn" id="8_l5f8m"]
 
 [node name="background" type="Node" unique_id=1953703789]
 script = ExtResource("1_l5f8m")
@@ -33,6 +35,10 @@ texture = ExtResource("4_da6cc")
 [node name="subtext" type="TextureRect" parent="." unique_id=1461206409]
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("5_b6e46")
+texture = ExtResource("5_wax1t")
 
 [node name="button" parent="." unique_id=1389436227 instance=ExtResource("6_wax1t")]
+
+[node name="config" parent="." unique_id=1646154581 instance=ExtResource("7_1tmhi")]
+
+[node name="credits" parent="." unique_id=2113251891 instance=ExtResource("8_l5f8m")]

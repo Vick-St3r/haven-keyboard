@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cjy6bekpqojnp"]
+
+[ext_resource type="Texture2D" uid="uid://ne3px6ym1sy2" path="res://assets/menu/creditsdarkest.png" id="1_0ctdu"]
+[ext_resource type="Script" uid="uid://b0yuqip81128s" path="res://scripts/credits.gd" id="1_2fbfq"]
+[ext_resource type="Texture2D" uid="uid://c8ibdl30gt8c8" path="res://assets/menu/creditswhite.png" id="2_2fbfq"]
+[ext_resource type="Texture2D" uid="uid://0f7npt03ucus" path="res://assets/menu/creditsdark.png" id="3_8gwij"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xrivr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0ctdu")
+}],
+"loop": 1,
+"name": &"click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2fbfq")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_8gwij")
+}],
+"loop": 1,
+"name": &"hover",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrivr"]
+size = Vector2(253, 108)
+
+[node name="credits" type="Node2D" unique_id=2113251891]
+position = Vector2(576, 324)
+script = ExtResource("1_2fbfq")
+
+[node name="creditsbutton" type="AnimatedSprite2D" parent="." unique_id=1548333966]
+sprite_frames = SubResource("SpriteFrames_xrivr")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=814585009]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1029494096]
+position = Vector2(-418.5, 177)
+shape = SubResource("RectangleShape2D_xrivr")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

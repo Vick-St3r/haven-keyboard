@@ -1,5 +1,7 @@
 extends TextEdit
 @onready var main_game: Node = $".."
+@onready var camera: Camera2D = $"../Camera2D"
+@onready var particles: CPUParticles2D = $CPUParticles2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,6 +25,9 @@ func _on_text_changed() -> void:
 		#^ took up so much space in terminal
 	else:
 		process_input_B()
+		particles.global_position = get_caret_draw_pos() + global_position
+		particles.global_position.y -= 15
+		particles.restart()
 
 func process_input_A():
 	var prev_length = main_game.targetText.length()
@@ -45,7 +50,13 @@ func process_input_A():
 			# OR expected character is a space, player has typed everything before correctly, and player types a space
 			if main_game.targetText[new_actual_text.length()-1] != ' ' || (actual_text == main_game.targetText.substr(0, new_actual_text.length()-1) && new_actual_text[new_actual_text.length()-1] == ' '):
 				actual_text += diff	
-			
+			else:
+				camera.screen_shake(5, 0.1)
+		
+		# check if added text is wrong
+		if actual_text != main_game.targetText.substr(0, actual_text.length()):
+			camera.screen_shake(5, 0.1)
+		
 	else:
 		# character was removed
 		var chars_removed = prev_length - cur_length

@@ -1,0 +1,181 @@
+[gd_scene format=3 uid="uid://cuy2k07mfyh73"]
+
+[ext_resource type="Shader" uid="uid://dny03voxsbg5n" path="res://shaders/shockwave.gdshader" id="1_crhbq"]
+[ext_resource type="Shader" uid="uid://ohbj2toix3jq" path="res://shaders/zoom_blur.gdshader" id="2_2cr2v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wjob3"]
+shader = ExtResource("1_crhbq")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/strength = 0.0
+shader_parameter/size = 0.0
+shader_parameter/thickness = 0.495
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u6ijs"]
+shader = ExtResource("2_2cr2v")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/strength = 0.0
+shader_parameter/samples = 10
+
+[sub_resource type="Animation" id="Animation_8xp80"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:material:shader_parameter/strength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ColorRect:material:shader_parameter/size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer2/ColorRect:material:shader_parameter/strength")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer2/ColorRect:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_sp04v"]
+resource_name = "shockwave"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:material:shader_parameter/strength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.17075571, 1),
+"update": 0,
+"values": [0.0, 2.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ColorRect:material:shader_parameter/size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0009999999, 0.6),
+"transitions": PackedFloat32Array(0.37893033, 1),
+"update": 0,
+"values": [0.0, 2.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer2/ColorRect:material:shader_parameter/strength")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.001, 0.6),
+"transitions": PackedFloat32Array(0.15932004, 1),
+"update": 0,
+"values": [2.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer2/ColorRect:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ihbck"]
+_data = {
+&"RESET": SubResource("Animation_8xp80"),
+&"shockwave": SubResource("Animation_sp04v")
+}
+
+[node name="Shaders" type="Node" unique_id=1499657877]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=109972002]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=818352016]
+visible = false
+material = SubResource("ShaderMaterial_wjob3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1744078557]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2" unique_id=1606740008]
+visible = false
+material = SubResource("ShaderMaterial_u6ijs")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1323334572]
+libraries/ = SubResource("AnimationLibrary_ihbck")

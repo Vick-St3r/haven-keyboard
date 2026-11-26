@@ -146,7 +146,17 @@ func update_highlights():
 	else:
 		syntax_highlighter = SpellingHighlighter.new()
 
-
+func move_caret_to_error():
+	var user_text_words = text.split(" ", false)
+	var target_text_words = main_game.targetText.split(" ", false)
+	var word_start_indices = get_word_start_indices(text)
+	
+	for i in range(1, user_text_words.size()):
+		if user_text_words[i] != target_text_words[i]:
+			if i == user_text_words.size()-1 || user_text_words[i+1] == target_text_words[i+1]:
+				set_caret_column(word_start_indices[i] + user_text_words[i].length())
+				break
+		
 
 # controlling inputs
 
@@ -181,3 +191,8 @@ func _gui_input(event: InputEvent) -> void:
 		for i in blocked_actions:
 			if event.is_action(i):
 				accept_event()
+	else:
+		if event is InputEventKey:
+			if event.keycode == KEY_TAB:
+				move_caret_to_error()
+				accept_event();

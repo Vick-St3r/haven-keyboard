@@ -100,6 +100,17 @@ theme_override_font_sizes/font_size = 28
 text = "WPM: 
 "
 
+[node name="progress" type="Label" parent="stickynote" unique_id=994137281]
+offset_left = 266.0
+offset_top = 382.0
+offset_right = 389.0
+offset_bottom = 457.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/paragraph_spacing = -10
+theme_override_fonts/font = ExtResource("2_72e8q")
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 2
+
 [node name="accuracy" type="Label" parent="stickynote" unique_id=1813165814]
 offset_left = -76.0
 offset_top = -2.0

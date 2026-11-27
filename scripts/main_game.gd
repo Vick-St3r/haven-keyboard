@@ -28,6 +28,7 @@ var minutes: float = 0.0
 @onready var wpmnote = $stickynote/wpm
 @onready var accuracy_note = $stickynote/accuracy
 @onready var grade = $grade/actualgrade
+@onready var progress: Label = $stickynote/progress
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -71,6 +72,7 @@ func _ready() -> void:
 	textedit.set_text(targetText)
 
 	startTimer()
+	update_progress_label()
 	
 	textedit.position.x = targetTextDisplay.position.x;
 	textedit.position.y = targetTextDisplay.position.y;
@@ -176,11 +178,14 @@ func goToNextSentence():
 		
 		# initialize text preview
 		textedit.set_text(targetText)
+		update_progress_label()
 	
 	camera.screen_shake(20, 0.2)
 	animation_player.play("shockwave")
 	animation_player.queue("RESET")
 
+func update_progress_label():
+	progress.text = str(curSentence+1) + "/" + str(originalSentences.size())
 
 func cloneTextResources():
 	print("cloning text files...")

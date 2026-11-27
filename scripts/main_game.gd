@@ -90,9 +90,14 @@ func clean_string(text):
 
 func scrambleText(text):
 	var words = text.split(" ", false)
-	for i in words.size() - 1:
-		if randi_range(0, 9) == 0:
-			words = swapAtIndex(words, i)
+	var num_swaps = roundi(words.size() / 10.0)
+	var indices = range(0, words.size() - 1)
+	indices.shuffle()
+	var swap_indices = indices.slice(0, num_swaps)
+	swap_indices.sort()
+	print(swap_indices)
+	for i in swap_indices:
+		words = swapAtIndex(words, i)
 	return " ".join(words)
 
 func swapAtIndex(arr, index):
